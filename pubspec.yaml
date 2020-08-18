@@ -1,8 +1,8 @@
 name: text_editor
 description: A new Flutter package project.
 version: 0.0.1
-author:
-homepage:
+author: Mehdi Zarepour<mehdi.zarepoor@gmail.com>
+homepage: https://github.com/mehdizarepour/text_editor.git
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
