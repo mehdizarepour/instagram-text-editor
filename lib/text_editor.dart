@@ -3,6 +3,7 @@ library text_editor;
 import 'package:flutter/material.dart';
 import 'package:text_editor/src/color-palette.dart';
 import 'package:text_editor/src/font-family.dart';
+import 'package:text_editor/src/font-size.dart';
 import 'package:text_editor/src/text-alignment.dart';
 
 class TextEditor extends StatefulWidget {
@@ -11,8 +12,6 @@ class TextEditor extends StatefulWidget {
 }
 
 class _TextEditorState extends State<TextEditor> {
-  double _currentSliderValue = 20;
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -39,18 +38,17 @@ class _TextEditorState extends State<TextEditor> {
                     flex: 3,
                     child: Align(
                       alignment: Alignment.center,
-                      child: FontFamily(),
+                      child: FontFamily(
+                        onFontFamilyChanged: (font) {},
+                      ),
                     ),
                   ),
                   Expanded(
                     child: Align(
                       alignment: Alignment.center,
-                      child: FlatButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Done',
-                          style: TextStyle(color: Colors.white),
-                        ),
+                      child: Text(
+                        'Done',
+                        style: TextStyle(color: Colors.white),
                       ),
                     ),
                   ),
@@ -61,21 +59,9 @@ class _TextEditorState extends State<TextEditor> {
                   children: [
                     Container(
                       // color: Colors.blue,
-                      child: RotatedBox(
-                        quarterTurns: 3,
-                        child: Slider(
-                          value: _currentSliderValue,
-                          min: 0,
-                          max: 100,
-                          divisions: 100,
-                          activeColor: Colors.white,
-                          inactiveColor: Colors.white,
-                          onChanged: (double value) {
-                            setState(() {
-                              _currentSliderValue = value;
-                            });
-                          },
-                        ),
+                      child: FontSize(
+                        size: 20,
+                        onFontSizeChanged: (fontSize) {},
                       ),
                     ),
                     Expanded(
