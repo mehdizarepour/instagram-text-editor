@@ -115,10 +115,13 @@ class _TextEditorState extends State<TextEditor> {
                   ),
                   Expanded(
                     flex: 3,
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: FontFamily(
-                        onFontFamilyChanged: _changeFontFamilyHandler,
+                    child: Container(
+                      margin: EdgeInsets.only(top: 5),
+                      child: Align(
+                        child: FontFamily(
+                          onFontFamilyChanged: _changeFontFamilyHandler,
+                        ),
+                        alignment: Alignment.center,
                       ),
                     ),
                   ),

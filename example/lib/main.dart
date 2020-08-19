@@ -27,7 +27,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  void _tapHandler() {
+  TextStyle _textStyle = TextStyle(fontSize: 50, color: Colors.white);
+  String _text = 'Sample Text';
+  TextAlign _textAlign = TextAlign.center;
+
+  void _tapHandler(text, textStyle, textAlign) {
     showGeneralDialog(
       context: context,
       // barrierColor: Colors.black12.withOpacity(0.1), // background color
@@ -42,10 +46,20 @@ class _MyHomePageState extends State<MyHomePage> {
         return Scaffold(
           backgroundColor: Colors.transparent,
           body: SafeArea(
-            child: TextEditor(
-              onEditCompleted: (style, align, text) {
-                Navigator.pop(context);
-              },
+            child: Container(
+              child: TextEditor(
+                text: text,
+                textStyle: textStyle,
+                textAlingment: textAlign,
+                onEditCompleted: (style, align, text) {
+                  setState(() {
+                    _text = text;
+                    _textStyle = style;
+                    _textAlign = align;
+                  });
+                  Navigator.pop(context);
+                },
+              ),
             ),
           ),
         );
@@ -56,13 +70,23 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
-        child: Container(
-          color: Colors.red,
-          width: 100,
-          height: 100,
-          child: GestureDetector(
-            onTap: _tapHandler,
+        child: Center(
+          child: Stack(
+            children: [
+              Image.asset('assets/story.png'),
+              Center(
+                child: GestureDetector(
+                  onTap: () => _tapHandler(_text, _textStyle, _textAlign),
+                  child: Text(
+                    _text,
+                    style: _textStyle,
+                    textAlign: _textAlign,
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
