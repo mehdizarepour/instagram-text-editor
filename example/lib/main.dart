@@ -45,10 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _tapHandler(text, textStyle, textAlign) {
     showGeneralDialog(
       context: context,
-      // barrierColor: Colors.black12.withOpacity(0.1), // background color
-      barrierDismissible:
-          false, // should dialog be dismissed when tapped outside
-      barrierLabel: "Dialog", // label for barrier
+      barrierDismissible: false,
       transitionDuration: Duration(
         milliseconds: 400,
       ), // how long it takes to popup dialog after button click

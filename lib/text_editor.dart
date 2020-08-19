@@ -151,7 +151,7 @@ class _TextEditorState extends State<TextEditor> {
                     Container(
                       // color: Colors.blue,
                       child: FontSize(
-                        size: 20,
+                        size: _currentTextStyle.fontSize,
                         onFontSizeChanged: _changeFontSizeHandler,
                       ),
                     ),

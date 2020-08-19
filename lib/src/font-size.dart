@@ -4,7 +4,10 @@ class FontSize extends StatefulWidget {
   final double size;
   final ValueChanged<double> onFontSizeChanged;
 
-  FontSize({this.size = 0, @required this.onFontSizeChanged});
+  FontSize({
+    this.size = 0,
+    @required this.onFontSizeChanged,
+  });
 
   @override
   _FontSizeState createState() => _FontSizeState();
