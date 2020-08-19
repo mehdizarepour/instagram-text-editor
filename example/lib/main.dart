@@ -27,12 +27,43 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  void _tapHandler() {
+    showGeneralDialog(
+      context: context,
+      // barrierColor: Colors.black12.withOpacity(0.1), // background color
+      barrierDismissible:
+          false, // should dialog be dismissed when tapped outside
+      barrierLabel: "Dialog", // label for barrier
+      transitionDuration: Duration(
+        milliseconds: 400,
+      ), // how long it takes to popup dialog after button click
+      pageBuilder: (_, __, ___) {
+        // your widget implementation
+        return Scaffold(
+          backgroundColor: Colors.transparent,
+          body: SafeArea(
+            child: TextEditor(
+              onTextAlignChanged: (align) {},
+              onTextStyleChanged: (textStyle) {},
+              onTextChanged: (text) {},
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          child: TextEditor(),
+          color: Colors.red,
+          width: 100,
+          height: 100,
+          child: GestureDetector(
+            onTap: _tapHandler,
+          ),
         ),
       ),
     );

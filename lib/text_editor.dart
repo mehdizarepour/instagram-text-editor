@@ -7,17 +7,89 @@ import 'package:text_editor/src/font-size.dart';
 import 'package:text_editor/src/text-alignment.dart';
 
 class TextEditor extends StatefulWidget {
+  final ValueChanged<TextAlign> onTextAlignChanged;
+  final ValueChanged<TextStyle> onTextStyleChanged;
+  final ValueChanged<String> onTextChanged;
+  final TextAlign textAlingment;
+  final TextStyle textStyle;
+  final String text;
+
+  TextEditor({
+    this.text = '',
+    this.textStyle,
+    this.textAlingment = TextAlign.center,
+    @required this.onTextAlignChanged,
+    @required this.onTextStyleChanged,
+    @required this.onTextChanged,
+  });
+
   @override
   _TextEditorState createState() => _TextEditorState();
 }
 
 class _TextEditorState extends State<TextEditor> {
+  TextAlign _currentTextAlingment;
+  TextStyle _currentTextStyle;
+  String _text;
+
+  @override
+  void initState() {
+    _text = widget.text;
+    _currentTextAlingment = widget.textAlingment;
+    _currentTextStyle =
+        widget.textStyle == null ? TextStyle() : widget.textStyle;
+
+    super.initState();
+  }
+
+  void _changeColorHandler(color) {
+    setState(() {
+      _currentTextStyle = TextStyle(
+        color: color,
+        fontFamily: _currentTextStyle.fontFamily,
+        fontSize: _currentTextStyle.fontSize,
+      );
+    });
+  }
+
+  void _changeFontFamilyHandler(fontFamily) {
+    setState(() {
+      _currentTextStyle = TextStyle(
+        color: _currentTextStyle.color,
+        fontFamily: fontFamily,
+        fontSize: _currentTextStyle.fontSize,
+      );
+    });
+  }
+
+  void _changeFontSizeHandler(fontSize) {
+    setState(() {
+      _currentTextStyle = TextStyle(
+        color: _currentTextStyle.color,
+        fontFamily: _currentTextStyle.fontFamily,
+        fontSize: fontSize,
+      );
+    });
+  }
+
+  void _changeTextAlignmentHandler(alignment) {
+    setState(() {
+      _currentTextAlingment = alignment;
+    });
+  }
+
+  void _changeTextHandler(value) {
+    _text = value;
+
+    widget.onTextChanged(_text);
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Container(
         child: Container(
-          color: Colors.black45,
+          color: Colors.black.withOpacity(0.6),
           child: Column(
             children: [
               Row(
@@ -28,7 +100,7 @@ class _TextEditorState extends State<TextEditor> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         TextAlignment(
-                          onTextAlignChanged: (alignment) {},
+                          onTextAlignChanged: _changeTextAlignmentHandler,
                         ),
                         // Icon(Icons.font_download),
                       ],
@@ -39,7 +111,7 @@ class _TextEditorState extends State<TextEditor> {
                     child: Align(
                       alignment: Alignment.center,
                       child: FontFamily(
-                        onFontFamilyChanged: (font) {},
+                        onFontFamilyChanged: _changeFontFamilyHandler,
                       ),
                     ),
                   ),
@@ -61,14 +133,21 @@ class _TextEditorState extends State<TextEditor> {
                       // color: Colors.blue,
                       child: FontSize(
                         size: 20,
-                        onFontSizeChanged: (fontSize) {},
+                        onFontSizeChanged: _changeFontSizeHandler,
                       ),
                     ),
                     Expanded(
                       child: Container(
                         child: Center(
                           child: TextField(
+                            controller: TextEditingController()..text = _text,
+                            onChanged: _changeTextHandler,
+                            maxLines: null,
+                            keyboardType: TextInputType.multiline,
+                            style: _currentTextStyle,
+                            textAlign: _currentTextAlingment,
                             autofocus: true,
+                            cursorColor: Colors.white,
                             decoration: null,
                           ),
                         ),
@@ -80,7 +159,7 @@ class _TextEditorState extends State<TextEditor> {
               Container(
                 margin: EdgeInsets.only(bottom: 5),
                 child: ColorPalette(
-                  onColorChanged: (color) {},
+                  onColorChanged: _changeColorHandler,
                 ),
               ),
             ],

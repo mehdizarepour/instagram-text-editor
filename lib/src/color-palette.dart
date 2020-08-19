@@ -28,6 +28,8 @@ class _ColorPaletteState extends State<ColorPalette> {
     void _changeColorHandler(color) {
       setState(() {
         currentColor = color;
+
+        widget.onColorChanged(currentColor);
       });
     }
 

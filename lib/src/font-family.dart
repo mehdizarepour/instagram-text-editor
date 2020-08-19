@@ -4,7 +4,7 @@ class FontFamily extends StatefulWidget {
   final String font;
   final ValueChanged<String> onFontFamilyChanged;
 
-  FontFamily({this.font, this.onFontFamilyChanged});
+  FontFamily({this.font, @required this.onFontFamilyChanged});
 
   @override
   _FontFamilyState createState() => _FontFamilyState();

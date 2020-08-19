@@ -33,6 +33,8 @@ class _FontSizeState extends State<FontSize> {
         onChanged: (double value) {
           setState(() {
             _currentSliderValue = value;
+
+            widget.onFontSizeChanged(_currentSliderValue);
           });
         },
       ),

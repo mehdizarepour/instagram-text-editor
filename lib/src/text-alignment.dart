@@ -14,8 +14,16 @@ class TextAlignment extends StatefulWidget {
 }
 
 class _TextAlignmentState extends State<TextAlignment> {
-  IconData _currentIcon = Icons.format_align_center;
-  TextAlign _currentTextAlingment = TextAlign.center;
+  IconData _currentIcon;
+  TextAlign _currentTextAlingment;
+
+  @override
+  void initState() {
+    _currentTextAlingment = TextAlign.center;
+    _currentIcon = Icons.format_align_center;
+
+    super.initState();
+  }
 
   void _onChangeAlignment() {
     setState(() {
