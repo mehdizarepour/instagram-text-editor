@@ -6,17 +6,44 @@ import 'package:text_editor/src/font-family.dart';
 import 'package:text_editor/src/font-size.dart';
 import 'package:text_editor/src/text-alignment.dart';
 
+/// Instagram like text editor
+/// A flutter widget that edit text style and text alignment
+///
+/// You can pass your text style to the widget
+/// and then get the edited text style
 class TextEditor extends StatefulWidget {
+  /// After edit process completed, [onEditCompleted] callback will be called.
   final void Function(TextStyle, TextAlign, String) onEditCompleted;
+
+  /// [onTextAlignChanged] will be called after [textAlingment] prop has changed
   final ValueChanged<TextAlign> onTextAlignChanged;
+
+  /// [onTextStyleChanged] will be called after [textStyle] prop has changed
   final ValueChanged<TextStyle> onTextStyleChanged;
+
+  /// [onTextChanged] will be called after [text] prop has changed
   final ValueChanged<String> onTextChanged;
+
+  /// The text alignment
   final TextAlign textAlingment;
+
+  /// The text style
   final TextStyle textStyle;
+
+  /// Widget's background color
   final Color backgroundColor;
+
+  // Editor's font families
   final List<String> fonts;
+
+  // Editor's default text
   final String text;
 
+  /// Create a [TextEditor] widget
+  ///
+  /// [fonts] list of font families that you want to use in editor.
+  /// After edit process completed, [onEditCompleted] callback will be called
+  /// with new [textStyle], [textAlingment] and [text] value
   TextEditor({
     @required this.fonts,
     @required this.onEditCompleted,
