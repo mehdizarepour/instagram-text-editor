@@ -43,9 +43,9 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor: Colors.transparent,
           body: SafeArea(
             child: TextEditor(
-              onTextAlignChanged: (align) {},
-              onTextStyleChanged: (textStyle) {},
-              onTextChanged: (text) {},
+              onEditCompleted: (style, align, text) {
+                Navigator.pop(context);
+              },
             ),
           ),
         );

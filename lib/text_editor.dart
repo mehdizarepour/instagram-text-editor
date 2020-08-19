@@ -7,6 +7,7 @@ import 'package:text_editor/src/font-size.dart';
 import 'package:text_editor/src/text-alignment.dart';
 
 class TextEditor extends StatefulWidget {
+  final void Function(TextStyle, TextAlign, String) onEditCompleted;
   final ValueChanged<TextAlign> onTextAlignChanged;
   final ValueChanged<TextStyle> onTextStyleChanged;
   final ValueChanged<String> onTextChanged;
@@ -15,12 +16,13 @@ class TextEditor extends StatefulWidget {
   final String text;
 
   TextEditor({
+    @required this.onEditCompleted,
     this.text = '',
     this.textStyle,
-    this.textAlingment = TextAlign.center,
-    @required this.onTextAlignChanged,
-    @required this.onTextStyleChanged,
-    @required this.onTextChanged,
+    this.textAlingment,
+    this.onTextAlignChanged,
+    this.onTextStyleChanged,
+    this.onTextChanged,
   });
 
   @override
@@ -35,7 +37,8 @@ class _TextEditorState extends State<TextEditor> {
   @override
   void initState() {
     _text = widget.text;
-    _currentTextAlingment = widget.textAlingment;
+    _currentTextAlingment =
+        widget.textAlingment == null ? TextAlign.center : widget.textAlingment;
     _currentTextStyle =
         widget.textStyle == null ? TextStyle() : widget.textStyle;
 
@@ -84,6 +87,10 @@ class _TextEditorState extends State<TextEditor> {
     widget.onTextChanged(_text);
   }
 
+  void _editCompleteHandler() {
+    widget.onEditCompleted(_currentTextStyle, _currentTextAlingment, _text);
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -118,9 +125,12 @@ class _TextEditorState extends State<TextEditor> {
                   Expanded(
                     child: Align(
                       alignment: Alignment.center,
-                      child: Text(
-                        'Done',
-                        style: TextStyle(color: Colors.white),
+                      child: GestureDetector(
+                        onTap: _editCompleteHandler,
+                        child: Text(
+                          'Done',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                     ),
                   ),
