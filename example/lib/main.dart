@@ -27,7 +27,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  TextStyle _textStyle = TextStyle(fontSize: 50, color: Colors.white);
+  final fonts = [
+    'OpenSans',
+    'Billabong',
+    'GrandHotel',
+    'Oswald',
+    'Quicksand',
+  ];
+  TextStyle _textStyle = TextStyle(
+    fontSize: 50,
+    color: Colors.white,
+    fontFamily: 'Billabong',
+  );
   String _text = 'Sample Text';
   TextAlign _textAlign = TextAlign.center;
 
@@ -51,6 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
               // top: false,
               child: Container(
                 child: TextEditor(
+                  fonts: fonts,
                   text: text,
                   textStyle: textStyle,
                   textAlingment: textAlign,

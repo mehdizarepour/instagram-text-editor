@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 
 class FontFamily extends StatefulWidget {
   final String font;
+  final List<String> fonts;
   final ValueChanged<String> onFontFamilyChanged;
 
-  FontFamily({this.font, @required this.onFontFamilyChanged});
+  FontFamily({
+    this.font,
+    @required this.onFontFamilyChanged,
+    @required this.fonts,
+  });
 
   @override
   _FontFamilyState createState() => _FontFamilyState();
@@ -12,30 +17,12 @@ class FontFamily extends StatefulWidget {
 
 class _FontFamilyState extends State<FontFamily> {
   int _currentFontIndex;
-  final List<String> fonts = [
-    'OpenSans',
-    'Billabong',
-    'ChunkFive',
-    'AlexBrush',
-    'Lobster',
-    'Allura',
-    'Arizonia',
-    'GrandHotel',
-    'GreatVibes',
-    'OstrichSans',
-    'Oswald',
-    'Pacifico',
-    'Quicksand',
-    'Roboto',
-    'SEASRN',
-    'SourceSans',
-    'Windsong',
-  ];
 
   @override
   void initState() {
-    _currentFontIndex =
-        fonts.indexOf(widget.font) < 0 ? 0 : fonts.indexOf(widget.font);
+    _currentFontIndex = widget.fonts.indexOf(widget.font) < 0
+        ? 0
+        : widget.fonts.indexOf(widget.font);
 
     super.initState();
   }
@@ -44,11 +31,11 @@ class _FontFamilyState extends State<FontFamily> {
     setState(() {
       _currentFontIndex++;
 
-      if (_currentFontIndex >= fonts.length) {
+      if (_currentFontIndex >= widget.fonts.length) {
         _currentFontIndex = 0;
       }
 
-      widget.onFontFamilyChanged(fonts[_currentFontIndex]);
+      widget.onFontFamilyChanged(widget.fonts[_currentFontIndex]);
     });
   }
 
@@ -63,7 +50,7 @@ class _FontFamilyState extends State<FontFamily> {
           borderRadius: BorderRadius.circular(20),
         ),
         child: Text(
-          fonts[_currentFontIndex],
+          widget.fonts[_currentFontIndex],
           style: TextStyle(color: Colors.white),
         ),
       ),

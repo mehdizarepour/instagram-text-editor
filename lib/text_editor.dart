@@ -14,9 +14,11 @@ class TextEditor extends StatefulWidget {
   final TextAlign textAlingment;
   final TextStyle textStyle;
   final Color backgroundColor;
+  final List<String> fonts;
   final String text;
 
   TextEditor({
+    @required this.fonts,
     @required this.onEditCompleted,
     this.backgroundColor,
     this.text = '',
@@ -121,6 +123,8 @@ class _TextEditorState extends State<TextEditor> {
                       margin: EdgeInsets.only(top: 5),
                       child: Align(
                         child: FontFamily(
+                          font: _currentTextStyle.fontFamily,
+                          fonts: widget.fonts,
                           onFontFamilyChanged: _changeFontFamilyHandler,
                         ),
                         alignment: Alignment.center,
@@ -174,6 +178,7 @@ class _TextEditorState extends State<TextEditor> {
               Container(
                 margin: EdgeInsets.only(bottom: 5),
                 child: ColorPalette(
+                  pickedColor: _currentTextStyle.color,
                   onColorChanged: _changeColorHandler,
                 ),
               ),
