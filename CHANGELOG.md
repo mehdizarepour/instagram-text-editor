@@ -1,3 +1,3 @@
-## [0.0.1] - TODO: Add release date.
+## [0.1.0] - [2020-08-19].
 
-* TODO: Describe initial release.
+* First virsion of `TextEditor`.

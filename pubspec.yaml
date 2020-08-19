@@ -1,6 +1,6 @@
 name: text_editor
-description: A new Flutter package project.
-version: 0.0.1
+description: An instagram like text editor Flutter widget that help you to change your text style.
+version: 0.1.0
 author: Mehdi Zarepour<mehdi.zarepoor@gmail.com>
 homepage: https://github.com/mehdizarepour/text_editor.git
 
