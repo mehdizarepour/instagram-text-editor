@@ -43,22 +43,26 @@ class _MyHomePageState extends State<MyHomePage> {
       ), // how long it takes to popup dialog after button click
       pageBuilder: (_, __, ___) {
         // your widget implementation
-        return Scaffold(
-          backgroundColor: Colors.transparent,
-          body: SafeArea(
-            child: Container(
-              child: TextEditor(
-                text: text,
-                textStyle: textStyle,
-                textAlingment: textAlign,
-                onEditCompleted: (style, align, text) {
-                  setState(() {
-                    _text = text;
-                    _textStyle = style;
-                    _textAlign = align;
-                  });
-                  Navigator.pop(context);
-                },
+        return Container(
+          color: Colors.black.withOpacity(0.6),
+          child: Scaffold(
+            backgroundColor: Colors.transparent,
+            body: SafeArea(
+              // top: false,
+              child: Container(
+                child: TextEditor(
+                  text: text,
+                  textStyle: textStyle,
+                  textAlingment: textAlign,
+                  onEditCompleted: (style, align, text) {
+                    setState(() {
+                      _text = text;
+                      _textStyle = style;
+                      _textAlign = align;
+                    });
+                    Navigator.pop(context);
+                  },
+                ),
               ),
             ),
           ),
@@ -72,6 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
+        top: false,
         child: Center(
           child: Stack(
             children: [

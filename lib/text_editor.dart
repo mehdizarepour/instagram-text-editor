@@ -13,10 +13,12 @@ class TextEditor extends StatefulWidget {
   final ValueChanged<String> onTextChanged;
   final TextAlign textAlingment;
   final TextStyle textStyle;
+  final Color backgroundColor;
   final String text;
 
   TextEditor({
     @required this.onEditCompleted,
+    this.backgroundColor,
     this.text = '',
     this.textStyle,
     this.textAlingment,
@@ -96,7 +98,7 @@ class _TextEditorState extends State<TextEditor> {
     return GestureDetector(
       child: Container(
         child: Container(
-          color: Colors.black.withOpacity(0.6),
+          color: widget.backgroundColor,
           child: Column(
             children: [
               Row(
