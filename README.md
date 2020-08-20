@@ -32,7 +32,7 @@ import 'package:texte_editor/text_editor.dart';
 
 Simply create a `TextEditor` widget, and pass the required params:
 
-```
+```dart
 TextEditor(
   fonts: fonts,
   text: text,
