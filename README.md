@@ -44,7 +44,6 @@ TextEditor(
       _textStyle = style;
       _textAlign = align;
     });
-    Navigator.pop(context);
   },
 )
 ```
