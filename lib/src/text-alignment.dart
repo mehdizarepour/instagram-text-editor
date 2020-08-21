@@ -19,7 +19,8 @@ class _TextAlignmentState extends State<TextAlignment> {
 
   @override
   void initState() {
-    _currentTextAlingment = TextAlign.center;
+    _currentTextAlingment =
+        widget.textAlign == null ? TextAlign.center : widget.textAlign;
     _currentIcon = Icons.format_align_center;
 
     super.initState();
