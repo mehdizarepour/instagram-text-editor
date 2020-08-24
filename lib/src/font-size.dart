@@ -5,7 +5,7 @@ class FontSize extends StatefulWidget {
   final ValueChanged<double> onFontSizeChanged;
 
   FontSize({
-    this.size = 0,
+    this.size,
     @required this.onFontSizeChanged,
   });
 
@@ -18,7 +18,7 @@ class _FontSizeState extends State<FontSize> {
 
   @override
   void initState() {
-    _currentSliderValue = widget.size;
+    _currentSliderValue = widget.size == null ? 10 : widget.size;
     super.initState();
   }
 

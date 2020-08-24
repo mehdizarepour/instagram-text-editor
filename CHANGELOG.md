@@ -1,3 +1,7 @@
+## [0.1.2] - [2020-08-24].
+
+* Set default font size
+
 ## [0.1.1] - [2020-08-21].
 
 * Fix `TextAlignment` initialization
