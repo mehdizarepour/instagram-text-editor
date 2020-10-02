@@ -138,6 +138,7 @@ class _TextEditorState extends State<TextEditor> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         TextAlignment(
+                          textAlign: _currentTextAlingment,
                           onTextAlignChanged: _changeTextAlignmentHandler,
                         ),
                         // Icon(Icons.font_download),

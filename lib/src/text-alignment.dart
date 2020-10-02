@@ -21,7 +21,17 @@ class _TextAlignmentState extends State<TextAlignment> {
   void initState() {
     _currentTextAlingment =
         widget.textAlign == null ? TextAlign.center : widget.textAlign;
-    _currentIcon = Icons.format_align_center;
+
+    switch (_currentTextAlingment) {
+      case TextAlign.left:
+        _currentIcon = Icons.format_align_left;
+        break;
+      case TextAlign.right:
+        _currentIcon = Icons.format_align_right;
+        break;
+      default:
+        _currentIcon = Icons.format_align_center;
+    }
 
     super.initState();
   }
