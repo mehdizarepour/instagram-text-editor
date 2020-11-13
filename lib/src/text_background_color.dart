@@ -12,20 +12,37 @@ class _TextBackgroundColorState extends State<TextBackgroundColor> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 25,
-      height: 25,
-      decoration: BoxDecoration(
-        color: _status == TextBackgroundColorStatus.none ? null : Colors.white,
-        borderRadius: BorderRadius.circular(5),
-        border: Border.all(color: Colors.white, width: 1),
-      ),
-      child: Icon(
-        Icons.format_bold,
-        size: 20,
-        color: _status == TextBackgroundColorStatus.none
-            ? Colors.white
-            : Colors.black,
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          switch (_status) {
+            case TextBackgroundColorStatus.none:
+              _status = TextBackgroundColorStatus.enable;
+              break;
+            case TextBackgroundColorStatus.enable:
+              _status = TextBackgroundColorStatus.exchange;
+              break;
+            default:
+              _status = TextBackgroundColorStatus.none;
+          }
+        });
+      },
+      child: Container(
+        width: 25,
+        height: 25,
+        decoration: BoxDecoration(
+          color:
+              _status == TextBackgroundColorStatus.none ? null : Colors.white,
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(color: Colors.white, width: 1),
+        ),
+        child: Icon(
+          Icons.format_bold,
+          size: 20,
+          color: _status == TextBackgroundColorStatus.none
+              ? Colors.white
+              : Colors.black,
+        ),
       ),
     );
   }
