@@ -1,21 +1,27 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class TetxStyleModel extends ChangeNotifier {
+class TextStyleModel extends ChangeNotifier {
   String text;
   TextStyle textStyle;
   TextAlign textAlign;
 
-  TetxStyleModel(this.text, this.textStyle, this.textAlign);
+  TextStyleModel(this.text, this.textStyle, this.textAlign);
 
-  void editText(String value) {
-    this.text = value;
+  void editTextAlinment(TextAlign value) {
+    this.textAlign = value;
 
     notifyListeners();
   }
 
-  void editTextAlinment(TextAlign value) {
-    this.textAlign = value;
+  void editTextColor(Color value) {
+    this.textStyle = this.textStyle.copyWith(color: value);
+
+    notifyListeners();
+  }
+
+  void editFontSize(double value) {
+    this.textStyle = this.textStyle.copyWith(fontSize: value);
 
     notifyListeners();
   }

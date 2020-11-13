@@ -66,14 +66,14 @@ class TextEditor extends StatefulWidget {
 }
 
 class _TextEditorState extends State<TextEditor> {
-  TetxStyleModel _tetxStyleModel;
+  TextStyleModel _textStyleModel;
   TextAlign _currentTextAlingment;
   TextStyle _currentTextStyle;
   String _text;
 
   @override
   void initState() {
-    _tetxStyleModel = TetxStyleModel(
+    _textStyleModel = TextStyleModel(
       widget.text,
       widget.textStyle == null ? TextStyle() : widget.textStyle,
       widget.textAlingment == null ? TextAlign.center : widget.textAlingment,
@@ -137,7 +137,7 @@ class _TextEditorState extends State<TextEditor> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => _tetxStyleModel,
+      create: (context) => _textStyleModel,
       child: Container(
         padding: EdgeInsets.only(right: 10, left: 10),
         color: widget.backgroundColor,
@@ -186,15 +186,12 @@ class _TextEditorState extends State<TextEditor> {
                 children: [
                   Container(
                     // color: Colors.blue,
-                    child: FontSize(
-                      size: _currentTextStyle.fontSize,
-                      onFontSizeChanged: _changeFontSizeHandler,
-                    ),
+                    child: FontSize(_currentTextStyle.fontSize),
                   ),
                   Expanded(
                     child: Container(
                       child: Center(
-                        child: Consumer<TetxStyleModel>(
+                        child: Consumer<TextStyleModel>(
                           builder: (context, textStyleModel, child) {
                             return TextField(
                               controller: TextEditingController()
@@ -219,7 +216,7 @@ class _TextEditorState extends State<TextEditor> {
             Container(
               margin: EdgeInsets.only(bottom: 5),
               child: FontOptionContainer(
-                FontOptionContainerStatus.fontFamily,
+                FontOptionContainerStatus.colorPalette,
               ),
             ),
           ],

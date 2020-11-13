@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:text_editor/src/text_style_model.dart';
 
 class FontSize extends StatefulWidget {
   final double size;
-  final ValueChanged<double> onFontSizeChanged;
 
-  FontSize({
-    this.size,
-    @required this.onFontSizeChanged,
-  });
+  FontSize(this.size);
 
   @override
   _FontSizeState createState() => _FontSizeState();
@@ -24,6 +22,9 @@ class _FontSizeState extends State<FontSize> {
 
   @override
   Widget build(BuildContext context) {
+    TextStyleModel textStyleModel =
+        Provider.of<TextStyleModel>(context, listen: false);
+
     return RotatedBox(
       quarterTurns: 3,
       child: Slider(
@@ -34,10 +35,10 @@ class _FontSizeState extends State<FontSize> {
         activeColor: Colors.white,
         inactiveColor: Colors.white,
         onChanged: (double value) {
-          setState(() {
-            _currentSliderValue = value;
+          textStyleModel.editFontSize(value);
 
-            widget.onFontSizeChanged(_currentSliderValue);
+          setState(() {
+            _currentSliderValue = textStyleModel.textStyle.fontSize;
           });
         },
       ),

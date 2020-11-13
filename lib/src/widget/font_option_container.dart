@@ -12,7 +12,7 @@ class FontOptionContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (status == FontOptionContainerStatus.colorPalette) {
-      return ColorPalette(onColorChanged: null);
+      return ColorPalette();
     }
 
     return FontFamily(fonts: ['Test'], onFontFamilyChanged: null, font: 'Test');

@@ -17,14 +17,10 @@ class TextAlignment extends StatefulWidget {
 
 class _TextAlignmentState extends State<TextAlignment> {
   IconData _currentIcon;
-  TextAlign _currentTextAlingment;
 
   @override
   void initState() {
-    _currentTextAlingment =
-        widget.textAlign == null ? TextAlign.center : widget.textAlign;
-
-    switch (_currentTextAlingment) {
+    switch (widget.textAlign) {
       case TextAlign.left:
         _currentIcon = Icons.format_align_left;
         break;
@@ -38,7 +34,7 @@ class _TextAlignmentState extends State<TextAlignment> {
     super.initState();
   }
 
-  void _onChangeAlignment(TetxStyleModel textStyleModel) {
+  void _onChangeAlignment(TextStyleModel textStyleModel) {
     setState(() {
       switch (textStyleModel.textAlign) {
         case TextAlign.left:
@@ -58,8 +54,8 @@ class _TextAlignmentState extends State<TextAlignment> {
 
   @override
   Widget build(BuildContext context) {
-    TetxStyleModel textStyleModel =
-        Provider.of<TetxStyleModel>(context, listen: false);
+    TextStyleModel textStyleModel =
+        Provider.of<TextStyleModel>(context, listen: false);
 
     return GestureDetector(
       onTapUp: (_) => _onChangeAlignment(textStyleModel),
