@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:text_editor/src/color-palette.dart';
 import 'package:text_editor/src/font-family.dart';
 import 'package:text_editor/src/font-size.dart';
+import 'package:text_editor/src/font_option_container.dart';
 import 'package:text_editor/src/font_option_switch.dart';
 import 'package:text_editor/src/text-alignment.dart';
 import 'package:text_editor/src/text_background_color.dart';
@@ -202,9 +203,8 @@ class _TextEditorState extends State<TextEditor> {
             ),
             Container(
               margin: EdgeInsets.only(bottom: 5),
-              child: ColorPalette(
-                pickedColor: _currentTextStyle.color,
-                onColorChanged: _changeColorHandler,
+              child: FontOptionContainer(
+                FontOptionContainerStatus.fontFamily,
               ),
             ),
           ],

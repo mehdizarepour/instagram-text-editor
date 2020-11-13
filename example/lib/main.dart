@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
       pageBuilder: (_, __, ___) {
         // your widget implementation
         return Container(
-          color: Colors.black.withOpacity(0.6),
+          color: Colors.black.withOpacity(0.4),
           child: Scaffold(
             backgroundColor: Colors.transparent,
             body: SafeArea(

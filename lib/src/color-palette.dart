@@ -110,8 +110,8 @@ class _ColorPicker extends StatelessWidget {
     return GestureDetector(
       onTap: () => onColorChanged(color),
       child: Container(
-        width: 33,
-        height: 33,
+        width: 40,
+        height: 40,
         margin: EdgeInsets.only(right: 7),
         decoration: BoxDecoration(
           color: color,
