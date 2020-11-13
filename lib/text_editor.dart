@@ -1,13 +1,15 @@
 library text_editor;
 
 import 'package:flutter/material.dart';
-import 'package:text_editor/src/color-palette.dart';
-import 'package:text_editor/src/font-family.dart';
-import 'package:text_editor/src/font-size.dart';
-import 'package:text_editor/src/font_option_container.dart';
-import 'package:text_editor/src/font_option_switch.dart';
-import 'package:text_editor/src/text-alignment.dart';
-import 'package:text_editor/src/text_background_color.dart';
+import 'package:provider/provider.dart';
+import 'package:text_editor/src/text_style_model.dart';
+import 'package:text_editor/src/widget/color_palette.dart';
+import 'package:text_editor/src/widget/font_family.dart';
+import 'package:text_editor/src/widget/font_size.dart';
+import 'package:text_editor/src/widget/font_option_container.dart';
+import 'package:text_editor/src/widget/font_option_switch.dart';
+import 'package:text_editor/src/widget/text_alignment.dart';
+import 'package:text_editor/src/widget/text_background_color.dart';
 
 /// Instagram like text editor
 /// A flutter widget that edit text style and text alignment
@@ -64,12 +66,19 @@ class TextEditor extends StatefulWidget {
 }
 
 class _TextEditorState extends State<TextEditor> {
+  TetxStyleModel _tetxStyleModel;
   TextAlign _currentTextAlingment;
   TextStyle _currentTextStyle;
   String _text;
 
   @override
   void initState() {
+    _tetxStyleModel = TetxStyleModel(
+      widget.text,
+      widget.textStyle == null ? TextStyle() : widget.textStyle,
+      widget.textAlingment == null ? TextAlign.center : widget.textAlingment,
+    );
+
     _text = widget.text;
     _currentTextAlingment =
         widget.textAlingment == null ? TextAlign.center : widget.textAlingment;
@@ -127,7 +136,8 @@ class _TextEditorState extends State<TextEditor> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return ChangeNotifierProvider(
+      create: (context) => _tetxStyleModel,
       child: Container(
         padding: EdgeInsets.only(right: 10, left: 10),
         color: widget.backgroundColor,
@@ -184,16 +194,21 @@ class _TextEditorState extends State<TextEditor> {
                   Expanded(
                     child: Container(
                       child: Center(
-                        child: TextField(
-                          controller: TextEditingController()..text = _text,
-                          onChanged: _changeTextHandler,
-                          maxLines: null,
-                          keyboardType: TextInputType.multiline,
-                          style: _currentTextStyle,
-                          textAlign: _currentTextAlingment,
-                          autofocus: true,
-                          cursorColor: Colors.white,
-                          decoration: null,
+                        child: Consumer<TetxStyleModel>(
+                          builder: (context, textStyleModel, child) {
+                            return TextField(
+                              controller: TextEditingController()
+                                ..text = textStyleModel.text,
+                              onChanged: (value) => textStyleModel.text = value,
+                              maxLines: null,
+                              keyboardType: TextInputType.multiline,
+                              style: textStyleModel.textStyle,
+                              textAlign: textStyleModel.textAlign,
+                              autofocus: true,
+                              cursorColor: Colors.white,
+                              decoration: null,
+                            );
+                          },
                         ),
                       ),
                     ),
