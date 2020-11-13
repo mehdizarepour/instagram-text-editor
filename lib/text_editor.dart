@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:text_editor/src/color-palette.dart';
 import 'package:text_editor/src/font-family.dart';
 import 'package:text_editor/src/font-size.dart';
+import 'package:text_editor/src/font_option_switch.dart';
 import 'package:text_editor/src/text-alignment.dart';
+import 'package:text_editor/src/text_background_color.dart';
 
 /// Instagram like text editor
 /// A flutter widget that edit text style and text alignment
@@ -126,92 +128,86 @@ class _TextEditorState extends State<TextEditor> {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Container(
-        child: Container(
-          color: widget.backgroundColor,
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        TextAlignment(
-                          textAlign: _currentTextAlingment,
-                          onTextAlignChanged: _changeTextAlignmentHandler,
-                        ),
-                        // Icon(Icons.font_download),
-                      ],
-                    ),
+        padding: EdgeInsets.only(right: 10, left: 10),
+        color: widget.backgroundColor,
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Expanded(child: Container()),
+                Expanded(
+                  flex: 3,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextAlignment(
+                        textAlign: _currentTextAlingment,
+                        onTextAlignChanged: _changeTextAlignmentHandler,
+                      ),
+                      SizedBox(width: 20),
+                      FontOptionSwitch(),
+                      SizedBox(width: 20),
+                      TextBackgroundColor(),
+                      // FontFamily(
+                      //   font: _currentTextStyle.fontFamily,
+                      //   fonts: widget.fonts,
+                      //   onFontFamilyChanged: _changeFontFamilyHandler,
+                      // ),
+                    ],
                   ),
-                  Expanded(
-                    flex: 3,
-                    child: Container(
-                      margin: EdgeInsets.only(top: 5),
-                      child: Align(
-                        child: FontFamily(
-                          font: _currentTextStyle.fontFamily,
-                          fonts: widget.fonts,
-                          onFontFamilyChanged: _changeFontFamilyHandler,
-                        ),
-                        alignment: Alignment.center,
+                ),
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: GestureDetector(
+                      onTap: _editCompleteHandler,
+                      child: Text(
+                        'Done',
+                        style: TextStyle(color: Colors.white),
                       ),
                     ),
                   ),
+                ),
+              ],
+            ),
+            Expanded(
+              child: Row(
+                children: [
+                  Container(
+                    // color: Colors.blue,
+                    child: FontSize(
+                      size: _currentTextStyle.fontSize,
+                      onFontSizeChanged: _changeFontSizeHandler,
+                    ),
+                  ),
                   Expanded(
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: GestureDetector(
-                        onTap: _editCompleteHandler,
-                        child: Text(
-                          'Done',
-                          style: TextStyle(color: Colors.white),
+                    child: Container(
+                      child: Center(
+                        child: TextField(
+                          controller: TextEditingController()..text = _text,
+                          onChanged: _changeTextHandler,
+                          maxLines: null,
+                          keyboardType: TextInputType.multiline,
+                          style: _currentTextStyle,
+                          textAlign: _currentTextAlingment,
+                          autofocus: true,
+                          cursorColor: Colors.white,
+                          decoration: null,
                         ),
                       ),
                     ),
                   ),
                 ],
               ),
-              Expanded(
-                child: Row(
-                  children: [
-                    Container(
-                      // color: Colors.blue,
-                      child: FontSize(
-                        size: _currentTextStyle.fontSize,
-                        onFontSizeChanged: _changeFontSizeHandler,
-                      ),
-                    ),
-                    Expanded(
-                      child: Container(
-                        child: Center(
-                          child: TextField(
-                            controller: TextEditingController()..text = _text,
-                            onChanged: _changeTextHandler,
-                            maxLines: null,
-                            keyboardType: TextInputType.multiline,
-                            style: _currentTextStyle,
-                            textAlign: _currentTextAlingment,
-                            autofocus: true,
-                            cursorColor: Colors.white,
-                            decoration: null,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+            ),
+            Container(
+              margin: EdgeInsets.only(bottom: 5),
+              child: ColorPalette(
+                pickedColor: _currentTextStyle.color,
+                onColorChanged: _changeColorHandler,
               ),
-              Container(
-                margin: EdgeInsets.only(bottom: 5),
-                child: ColorPalette(
-                  pickedColor: _currentTextStyle.color,
-                  onColorChanged: _changeColorHandler,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
