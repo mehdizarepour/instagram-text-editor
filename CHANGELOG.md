@@ -1,3 +1,8 @@
+## [0.2.0] - [2020-11-14].
+
+* New style to select font family
+* Improve performance
+
 ## [0.1.3] - [2020-10-02].
 
 * Set default text alignment
