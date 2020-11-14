@@ -25,4 +25,10 @@ class TextStyleModel extends ChangeNotifier {
 
     notifyListeners();
   }
+
+  void changeFontFamily(String value) {
+    this.textStyle = this.textStyle.copyWith(fontFamily: value);
+
+    notifyListeners();
+  }
 }

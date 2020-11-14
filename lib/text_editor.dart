@@ -2,11 +2,11 @@ library text_editor;
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:text_editor/src/font_option_model.dart';
 import 'package:text_editor/src/text_style_model.dart';
 import 'package:text_editor/src/widget/color_palette.dart';
 import 'package:text_editor/src/widget/font_family.dart';
 import 'package:text_editor/src/widget/font_size.dart';
-import 'package:text_editor/src/widget/font_option_container.dart';
 import 'package:text_editor/src/widget/font_option_switch.dart';
 import 'package:text_editor/src/widget/text_alignment.dart';
 import 'package:text_editor/src/widget/text_background_color.dart';
@@ -67,6 +67,7 @@ class TextEditor extends StatefulWidget {
 
 class _TextEditorState extends State<TextEditor> {
   TextStyleModel _textStyleModel;
+  FontOptionModel _fontOptionModel;
   TextAlign _currentTextAlingment;
   TextStyle _currentTextStyle;
   String _text;
@@ -78,6 +79,7 @@ class _TextEditorState extends State<TextEditor> {
       widget.textStyle == null ? TextStyle() : widget.textStyle,
       widget.textAlingment == null ? TextAlign.center : widget.textAlingment,
     );
+    _fontOptionModel = FontOptionModel(_textStyleModel, ['a', 'b']);
 
     _text = widget.text;
     _currentTextAlingment =
@@ -136,8 +138,11 @@ class _TextEditorState extends State<TextEditor> {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => _textStyleModel,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => _textStyleModel),
+        ChangeNotifierProvider(create: (context) => _fontOptionModel),
+      ],
       child: Container(
         padding: EdgeInsets.only(right: 10, left: 10),
         color: widget.backgroundColor,
@@ -215,8 +220,15 @@ class _TextEditorState extends State<TextEditor> {
             ),
             Container(
               margin: EdgeInsets.only(bottom: 5),
-              child: FontOptionContainer(
-                FontOptionContainerStatus.colorPalette,
+              child: Consumer<FontOptionModel>(
+                builder: (context, model, chile) =>
+                    model.status == FontOptionStatus.fontFamily
+                        ? FontFamily(
+                            fonts: model.fonts,
+                            font: '',
+                            onFontFamilyChanged: null,
+                          )
+                        : ColorPalette(),
               ),
             ),
           ],

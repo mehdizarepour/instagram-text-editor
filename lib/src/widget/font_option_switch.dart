@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-enum FontOptionStatus { color, font }
+import 'package:provider/provider.dart';
+import 'package:text_editor/src/font_option_model.dart';
 
 class FontOptionSwitch extends StatefulWidget {
   @override
@@ -8,21 +8,15 @@ class FontOptionSwitch extends StatefulWidget {
 }
 
 class _FontOptionSwitch extends State<FontOptionSwitch> {
-  FontOptionStatus _fontOptionStatus = FontOptionStatus.font;
-
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          _fontOptionStatus = _fontOptionStatus == FontOptionStatus.font
-              ? FontOptionStatus.color
-              : FontOptionStatus.font;
-        });
-      },
-      child: _fontOptionStatus == FontOptionStatus.font
-          ? _FontOption()
-          : _ColorOption(),
+    return Consumer<FontOptionModel>(
+      builder: (context, model, child) => GestureDetector(
+        onTap: () => model.changeFontOptionStatus(model.status),
+        child: model.status == FontOptionStatus.fontFamily
+            ? _FontOption()
+            : _ColorOption(),
+      ),
     );
   }
 }
