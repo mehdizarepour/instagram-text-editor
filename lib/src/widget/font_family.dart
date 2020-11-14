@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:text_editor/src/font_option_model.dart';
 
 class FontFamily extends StatefulWidget {
-  final List<String> fonts;
+  final List<FontFamilyModel> fonts;
 
   FontFamily(this.fonts);
 
@@ -18,8 +18,10 @@ class _FontFamilyState extends State<FontFamily> {
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
-          children:
-              widget.fonts.map((font) => _FontFamilyPicker(font)).toList(),
+          children: widget.fonts
+              .map((fontModel) =>
+                  _FontFamilyPicker(fontModel.font, fontModel.isSelected))
+              .toList(),
         ),
       ),
     );
@@ -28,8 +30,9 @@ class _FontFamilyState extends State<FontFamily> {
 
 class _FontFamilyPicker extends StatelessWidget {
   final String font;
+  final bool isSelected;
 
-  _FontFamilyPicker(this.font);
+  _FontFamilyPicker(this.font, this.isSelected);
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +47,15 @@ class _FontFamilyPicker extends StatelessWidget {
         margin: EdgeInsets.only(right: 7),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100),
-          color: Colors.black45,
+          color: isSelected ? Colors.white : Colors.black45,
         ),
         child: Center(
           child: Text(
             'Aa',
-            style: TextStyle(color: Colors.white, fontFamily: font),
+            style: TextStyle(
+              color: isSelected ? Colors.orange : Colors.white,
+              fontFamily: font,
+            ),
           ),
         ),
       ),
