@@ -18,11 +18,11 @@ An instagram like text editor widget for flutter
 
 ## Screenshot
 
-![Image of TextEditor](https://github.com/mehdizarepour/assets/blob/master/images/text-editor-screenshot.gif)
+![text_editor](https://user-images.githubusercontent.com/8446770/99151584-983af680-26b1-11eb-929e-f49df5c69bb2.gif)
 
 ## Installation
 
-Add `text_editor: ^0.1.3` to your `pubspec.yaml` dependencies. And import it:
+Add `text_editor: ^0.2.0` to your `pubspec.yaml` dependencies. And import it:
 
 ```dart
 import 'package:texte_editor/text_editor.dart';
