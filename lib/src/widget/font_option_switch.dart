@@ -14,8 +14,8 @@ class _FontOptionSwitch extends State<FontOptionSwitch> {
       builder: (context, model, child) => GestureDetector(
         onTap: () => model.changeFontOptionStatus(model.status),
         child: model.status == FontOptionStatus.fontFamily
-            ? _FontOption()
-            : _ColorOption(),
+            ? _ColorOption()
+            : _FontOption(),
       ),
     );
   }
