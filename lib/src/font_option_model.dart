@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:text_editor/src/text_style_model.dart';
-import 'package:text_editor/src/widget/font_family.dart';
 
 enum FontOptionStatus { colorPalette, fontFamily }
 

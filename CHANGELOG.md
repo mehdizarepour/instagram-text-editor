@@ -1,3 +1,7 @@
+## [0.2.1] - [2020-11-14].
+
+* Remove unused imports
+
 ## [0.2.0] - [2020-11-14].
 
 * New design to select font family
