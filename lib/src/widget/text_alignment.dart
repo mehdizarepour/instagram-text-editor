@@ -2,64 +2,38 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:text_editor/src/text_style_model.dart';
 
-class TextAlignment extends StatefulWidget {
-  final TextAlign textAlign;
-  final ValueChanged<TextAlign> onTextAlignChanged;
-
-  TextAlignment({
-    @required this.onTextAlignChanged,
-    this.textAlign,
-  });
-
-  @override
-  _TextAlignmentState createState() => _TextAlignmentState();
-}
-
-class _TextAlignmentState extends State<TextAlignment> {
-  IconData _currentIcon;
-
-  @override
-  void initState() {
-    switch (widget.textAlign) {
+class TextAlignment extends StatelessWidget {
+  void _onChangeAlignment(TextStyleModel textStyleModel) {
+    switch (textStyleModel.textAlign) {
       case TextAlign.left:
-        _currentIcon = Icons.format_align_left;
+        textStyleModel.editTextAlinment(TextAlign.center);
         break;
-      case TextAlign.right:
-        _currentIcon = Icons.format_align_right;
+      case TextAlign.center:
+        textStyleModel.editTextAlinment(TextAlign.right);
         break;
       default:
-        _currentIcon = Icons.format_align_center;
+        textStyleModel.editTextAlinment(TextAlign.left);
     }
-
-    super.initState();
   }
 
-  void _onChangeAlignment(TextStyleModel textStyleModel) {
-    setState(() {
-      switch (textStyleModel.textAlign) {
-        case TextAlign.left:
-          textStyleModel.editTextAlinment(TextAlign.center);
-          _currentIcon = Icons.format_align_center;
-          break;
-        case TextAlign.center:
-          textStyleModel.editTextAlinment(TextAlign.right);
-          _currentIcon = Icons.format_align_right;
-          break;
-        default:
-          textStyleModel.editTextAlinment(TextAlign.left);
-          _currentIcon = Icons.format_align_left;
-      }
-    });
+  IconData _mapTextAlignToIcon(TextAlign align) {
+    switch (align) {
+      case TextAlign.left:
+        return Icons.format_align_left;
+      case TextAlign.center:
+        return Icons.format_align_center;
+      default:
+        return Icons.format_align_right;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    TextStyleModel textStyleModel =
-        Provider.of<TextStyleModel>(context, listen: false);
-
-    return GestureDetector(
-      onTapUp: (_) => _onChangeAlignment(textStyleModel),
-      child: Icon(_currentIcon, color: Colors.white),
+    return Consumer<TextStyleModel>(
+      builder: (context, model, child) => GestureDetector(
+        onTapUp: (_) => _onChangeAlignment(model),
+        child: Icon(_mapTextAlignToIcon(model.textAlign), color: Colors.white),
+      ),
     );
   }
 }

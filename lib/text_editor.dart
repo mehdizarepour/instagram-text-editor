@@ -68,9 +68,6 @@ class TextEditor extends StatefulWidget {
 class _TextEditorState extends State<TextEditor> {
   TextStyleModel _textStyleModel;
   FontOptionModel _fontOptionModel;
-  TextAlign _currentTextAlingment;
-  TextStyle _currentTextStyle;
-  String _text;
 
   @override
   void initState() {
@@ -79,61 +76,17 @@ class _TextEditorState extends State<TextEditor> {
       widget.textStyle == null ? TextStyle() : widget.textStyle,
       widget.textAlingment == null ? TextAlign.center : widget.textAlingment,
     );
-    _fontOptionModel = FontOptionModel(_textStyleModel, ['a', 'b']);
-
-    _text = widget.text;
-    _currentTextAlingment =
-        widget.textAlingment == null ? TextAlign.center : widget.textAlingment;
-    _currentTextStyle =
-        widget.textStyle == null ? TextStyle() : widget.textStyle;
+    _fontOptionModel = FontOptionModel(_textStyleModel, widget.fonts);
 
     super.initState();
   }
 
-  void _changeColorHandler(color) {
-    setState(() {
-      _currentTextStyle = TextStyle(
-        color: color,
-        fontFamily: _currentTextStyle.fontFamily,
-        fontSize: _currentTextStyle.fontSize,
-      );
-    });
-  }
-
-  void _changeFontFamilyHandler(fontFamily) {
-    setState(() {
-      _currentTextStyle = TextStyle(
-        color: _currentTextStyle.color,
-        fontFamily: fontFamily,
-        fontSize: _currentTextStyle.fontSize,
-      );
-    });
-  }
-
-  void _changeFontSizeHandler(fontSize) {
-    setState(() {
-      _currentTextStyle = TextStyle(
-        color: _currentTextStyle.color,
-        fontFamily: _currentTextStyle.fontFamily,
-        fontSize: fontSize,
-      );
-    });
-  }
-
-  void _changeTextAlignmentHandler(alignment) {
-    setState(() {
-      _currentTextAlingment = alignment;
-    });
-  }
-
-  void _changeTextHandler(value) {
-    _text = value;
-
-    widget.onTextChanged(_text);
-  }
-
   void _editCompleteHandler() {
-    widget.onEditCompleted(_currentTextStyle, _currentTextAlingment, _text);
+    widget.onEditCompleted(
+      _textStyleModel.textStyle,
+      _textStyleModel.textAlign,
+      _textStyleModel.text,
+    );
   }
 
   @override
@@ -156,19 +109,11 @@ class _TextEditorState extends State<TextEditor> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      TextAlignment(
-                        textAlign: _currentTextAlingment,
-                        onTextAlignChanged: _changeTextAlignmentHandler,
-                      ),
+                      TextAlignment(),
                       SizedBox(width: 20),
                       FontOptionSwitch(),
                       SizedBox(width: 20),
                       TextBackgroundColor(),
-                      // FontFamily(
-                      //   font: _currentTextStyle.fontFamily,
-                      //   fonts: widget.fonts,
-                      //   onFontFamilyChanged: _changeFontFamilyHandler,
-                      // ),
                     ],
                   ),
                 ),
@@ -189,10 +134,7 @@ class _TextEditorState extends State<TextEditor> {
             Expanded(
               child: Row(
                 children: [
-                  Container(
-                    // color: Colors.blue,
-                    child: FontSize(_currentTextStyle.fontSize),
-                  ),
+                  FontSize(),
                   Expanded(
                     child: Container(
                       child: Center(
@@ -221,13 +163,9 @@ class _TextEditorState extends State<TextEditor> {
             Container(
               margin: EdgeInsets.only(bottom: 5),
               child: Consumer<FontOptionModel>(
-                builder: (context, model, chile) =>
+                builder: (context, model, child) =>
                     model.status == FontOptionStatus.fontFamily
-                        ? FontFamily(
-                            fonts: model.fonts,
-                            font: '',
-                            onFontFamilyChanged: null,
-                          )
+                        ? FontFamily(model.fonts)
                         : ColorPalette(),
               ),
             ),
