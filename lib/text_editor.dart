@@ -112,8 +112,9 @@ class _TextEditorState extends State<TextEditor> {
                       TextAlignment(),
                       SizedBox(width: 20),
                       FontOptionSwitch(),
-                      SizedBox(width: 20),
-                      TextBackgroundColor(),
+                      // TODO: Add text background color
+                      // SizedBox(width: 20),
+                      // TextBackgroundColor(),
                     ],
                   ),
                 ),
