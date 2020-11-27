@@ -77,6 +77,16 @@ class _MyHomePageState extends State<MyHomePage> {
                   text: text,
                   textStyle: textStyle,
                   textAlingment: textAlign,
+                  // paletteColors: [
+                  //   Colors.black,
+                  //   Colors.white,
+                  //   Colors.blue,
+                  //   Colors.red,
+                  //   Colors.green,
+                  //   Colors.yellow,
+                  //   Colors.pink,
+                  //   Colors.cyanAccent,
+                  // ],
                   // decoration: EditorDecoration(
                   //   doneButton: Icon(Icons.close, color: Colors.white),
                   //   fontFamily: Icon(Icons.title, color: Colors.white),

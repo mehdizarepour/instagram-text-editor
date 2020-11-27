@@ -1,3 +1,56 @@
+## [0.3.0] - [2020-11-27].
+
+* Add `decoration` property to customize editor design
+
+```diff
+TextEditor(
+    fonts: fonts,
+    text: text,
+    textStyle: textStyle,
+    textAlingment: textAlign,
++   decoration: EditorDecoration(
++     doneButton: Icon(Icons.close, color: Colors.white),
++     fontFamily: Icon(Icons.title, color: Colors.white),
++     colorPalette: Icon(Icons.palette, color: Colors.white),
++     alignment: AlignmentDecoration(
++       left: Text(
++         'left',
++         style: TextStyle(color: Colors.white),
++       ),
++       center: Text(
++         'center',
++         style: TextStyle(color: Colors.white),
++       ),
++       right: Text(
++         'right',
++         style: TextStyle(color: Colors.white),
++       ),
++     ),
++   ),
+),
+```
+
+* Add `paletteColors` property to customize palette's colors
+
+```diff
+TextEditor(
+    fonts: fonts,
+    text: text,
+    textStyle: textStyle,
+    textAlingment: textAlign,
++   paletteColors: [
++      Colors.black,
++      Colors.white,
++      Colors.blue,
++      Colors.red,
++      Colors.green,
++      Colors.yellow,
++      Colors.pink,
++      Colors.cyanAccent,
++   ],
+),
+```
+
 ## [0.2.1] - [2020-11-14].
 
 * Remove unused imports

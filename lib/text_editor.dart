@@ -40,6 +40,9 @@ class TextEditor extends StatefulWidget {
   /// Editor's font families
   final List<String> fonts;
 
+  /// Editor's palette colors
+  final List<Color> paletteColors;
+
   /// Editor's default text
   final String text;
 
@@ -49,11 +52,13 @@ class TextEditor extends StatefulWidget {
   /// Create a [TextEditor] widget
   ///
   /// [fonts] list of font families that you want to use in editor.
+  ///
   /// After edit process completed, [onEditCompleted] callback will be called
   /// with new [textStyle], [textAlingment] and [text] value
   TextEditor({
     @required this.fonts,
     @required this.onEditCompleted,
+    this.paletteColors,
     this.backgroundColor,
     this.text = '',
     this.textStyle,
@@ -80,7 +85,11 @@ class _TextEditorState extends State<TextEditor> {
       widget.textStyle == null ? TextStyle() : widget.textStyle,
       widget.textAlingment == null ? TextAlign.center : widget.textAlingment,
     );
-    _fontOptionModel = FontOptionModel(_textStyleModel, widget.fonts);
+    _fontOptionModel = FontOptionModel(
+      _textStyleModel,
+      widget.fonts,
+      colors: widget.paletteColors,
+    );
 
     // Initialize decorator
     _doneButton = widget.decoration?.doneButton == null
@@ -180,7 +189,7 @@ class _TextEditorState extends State<TextEditor> {
                 builder: (context, model, child) =>
                     model.status == FontOptionStatus.fontFamily
                         ? FontFamily(model.fonts)
-                        : ColorPalette(),
+                        : ColorPalette(model.colors),
               ),
             ),
           ],

@@ -3,24 +3,15 @@ import 'package:provider/provider.dart';
 import 'package:text_editor/src/text_style_model.dart';
 
 class ColorPalette extends StatefulWidget {
-  final Color pickedColor;
+  final List<Color> colors;
 
-  ColorPalette({this.pickedColor = Colors.black});
+  ColorPalette(this.colors);
 
   @override
   _ColorPaletteState createState() => _ColorPaletteState();
 }
 
 class _ColorPaletteState extends State<ColorPalette> {
-  Color currentColor;
-
-  @override
-  void initState() {
-    currentColor = widget.pickedColor;
-
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -46,26 +37,7 @@ class _ColorPaletteState extends State<ColorPalette> {
                 ),
               ),
             ),
-            _ColorPicker(Colors.black),
-            _ColorPicker(Colors.white),
-            _ColorPicker(Color(int.parse('0xffEA2027'))),
-            _ColorPicker(Color(int.parse('0xff006266'))),
-            _ColorPicker(Color(int.parse('0xff1B1464'))),
-            _ColorPicker(Color(int.parse('0xff5758BB'))),
-            _ColorPicker(Color(int.parse('0xff6F1E51'))),
-            _ColorPicker(Color(int.parse('0xffB53471'))),
-            _ColorPicker(Color(int.parse('0xffEE5A24'))),
-            _ColorPicker(Color(int.parse('0xff009432'))),
-            _ColorPicker(Color(int.parse('0xff0652DD'))),
-            _ColorPicker(Color(int.parse('0xff9980FA'))),
-            _ColorPicker(Color(int.parse('0xff833471'))),
-            _ColorPicker(Color(int.parse('0xff112CBC4'))),
-            _ColorPicker(Color(int.parse('0xffFDA7DF'))),
-            _ColorPicker(Color(int.parse('0xffED4C67'))),
-            _ColorPicker(Color(int.parse('0xffF79F1F'))),
-            _ColorPicker(Color(int.parse('0xffA3CB38'))),
-            _ColorPicker(Color(int.parse('0xff1289A7'))),
-            _ColorPicker(Color(int.parse('0xffD980FA'))),
+            ...widget.colors.map((color) => _ColorPicker(color)).toList(),
           ],
         ),
       ),
