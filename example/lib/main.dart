@@ -77,25 +77,25 @@ class _MyHomePageState extends State<MyHomePage> {
                   text: text,
                   textStyle: textStyle,
                   textAlingment: textAlign,
-                  decoration: EditorDecoration(
-                    doneButton: Icon(Icons.close, color: Colors.white),
-                    fontFamily: Icon(Icons.title, color: Colors.white),
-                    colorPalette: Icon(Icons.palette, color: Colors.white),
-                    alignment: AlignmentDecoration(
-                      left: Text(
-                        'left',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      center: Text(
-                        'center',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      right: Text(
-                        'right',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
+                  // decoration: EditorDecoration(
+                  //   doneButton: Icon(Icons.close, color: Colors.white),
+                  //   fontFamily: Icon(Icons.title, color: Colors.white),
+                  //   colorPalette: Icon(Icons.palette, color: Colors.white),
+                  //   alignment: AlignmentDecoration(
+                  //     left: Text(
+                  //       'left',
+                  //       style: TextStyle(color: Colors.white),
+                  //     ),
+                  //     center: Text(
+                  //       'center',
+                  //       style: TextStyle(color: Colors.white),
+                  //     ),
+                  //     right: Text(
+                  //       'right',
+                  //       style: TextStyle(color: Colors.white),
+                  //     ),
+                  //   ),
+                  // ),
                   onEditCompleted: (style, align, text) {
                     setState(() {
                       _text = text;
