@@ -3,6 +3,11 @@ import 'package:provider/provider.dart';
 import 'package:text_editor/src/font_option_model.dart';
 
 class FontOptionSwitch extends StatefulWidget {
+  final Widget fontFamilySwitch;
+  final Widget colorPaletteSwitch;
+
+  FontOptionSwitch({this.fontFamilySwitch, this.colorPaletteSwitch});
+
   @override
   _FontOptionSwitch createState() => _FontOptionSwitch();
 }
@@ -14,8 +19,12 @@ class _FontOptionSwitch extends State<FontOptionSwitch> {
       builder: (context, model, child) => GestureDetector(
         onTap: () => model.changeFontOptionStatus(model.status),
         child: model.status == FontOptionStatus.fontFamily
-            ? _ColorOption()
-            : _FontOption(),
+            ? (widget.colorPaletteSwitch == null
+                ? _ColorOption()
+                : widget.colorPaletteSwitch)
+            : (widget.fontFamilySwitch == null
+                ? _FontOption()
+                : widget.fontFamilySwitch),
       ),
     );
   }

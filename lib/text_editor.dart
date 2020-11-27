@@ -37,11 +37,14 @@ class TextEditor extends StatefulWidget {
   /// Widget's background color
   final Color backgroundColor;
 
-  // Editor's font families
+  /// Editor's font families
   final List<String> fonts;
 
-  // Editor's default text
+  /// Editor's default text
   final String text;
+
+  /// Decoration to customize the editor
+  final EditorDecoration decoration;
 
   /// Create a [TextEditor] widget
   ///
@@ -58,6 +61,7 @@ class TextEditor extends StatefulWidget {
     this.onTextAlignChanged,
     this.onTextStyleChanged,
     this.onTextChanged,
+    this.decoration,
   });
 
   @override
@@ -67,6 +71,7 @@ class TextEditor extends StatefulWidget {
 class _TextEditorState extends State<TextEditor> {
   TextStyleModel _textStyleModel;
   FontOptionModel _fontOptionModel;
+  Widget _doneButton;
 
   @override
   void initState() {
@@ -76,6 +81,11 @@ class _TextEditorState extends State<TextEditor> {
       widget.textAlingment == null ? TextAlign.center : widget.textAlingment,
     );
     _fontOptionModel = FontOptionModel(_textStyleModel, widget.fonts);
+
+    // Initialize decorator
+    _doneButton = widget.decoration?.doneButton == null
+        ? Text('Done', style: TextStyle(color: Colors.white))
+        : widget.decoration.doneButton;
 
     super.initState();
   }
@@ -108,9 +118,16 @@ class _TextEditorState extends State<TextEditor> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      TextAlignment(),
+                      TextAlignment(
+                        left: widget.decoration?.alignment?.left,
+                        center: widget.decoration?.alignment?.center,
+                        right: widget.decoration?.alignment?.right,
+                      ),
                       SizedBox(width: 20),
-                      FontOptionSwitch(),
+                      FontOptionSwitch(
+                        fontFamilySwitch: widget.decoration?.fontFamily,
+                        colorPaletteSwitch: widget.decoration?.colorPalette,
+                      ),
                       // TODO: Add text background color
                       // SizedBox(width: 20),
                       // TextBackgroundColor(),
@@ -122,10 +139,7 @@ class _TextEditorState extends State<TextEditor> {
                     alignment: Alignment.centerRight,
                     child: GestureDetector(
                       onTap: _editCompleteHandler,
-                      child: Text(
-                        'Done',
-                        style: TextStyle(color: Colors.white),
-                      ),
+                      child: _doneButton,
                     ),
                   ),
                 ),
@@ -174,4 +188,42 @@ class _TextEditorState extends State<TextEditor> {
       ),
     );
   }
+}
+
+/// Decoration to customize text alignment widgets' design.
+///
+/// Pass your custom widget to `left`, `right` and `center` to customize their design
+class AlignmentDecoration {
+  /// Left alignment widget
+  final Widget left;
+
+  /// Center alignment widget
+  final Widget center;
+
+  /// Right alignment widget
+  final Widget right;
+
+  AlignmentDecoration({this.left, this.center, this.right});
+}
+
+/// Decoration to customize the editor
+///
+/// By using this class, you can customize the text editor's design
+class EditorDecoration {
+  /// Done button widget
+  final Widget doneButton;
+  final AlignmentDecoration alignment;
+
+  /// Font family switch widget
+  final Widget fontFamily;
+
+  /// Color palette switch widget
+  final Widget colorPalette;
+
+  EditorDecoration({
+    this.doneButton,
+    this.alignment,
+    this.fontFamily,
+    this.colorPalette,
+  });
 }
