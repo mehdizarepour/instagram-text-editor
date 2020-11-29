@@ -38,7 +38,7 @@ class _ColorOption extends StatelessWidget {
       height: 25,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12.5),
-        border: Border.all(color: Colors.white, width: 1),
+        border: Border.all(color: Colors.white, width: 2),
         gradient: SweepGradient(
           colors: [
             Colors.blue,
