@@ -38,7 +38,7 @@ class _ColorOption extends StatelessWidget {
       height: 25,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12.5),
-        border: Border.all(color: Colors.white, width: 2),
+        border: Border.all(color: Colors.white, width: 1.5),
         gradient: SweepGradient(
           colors: [
             Colors.blue,
@@ -62,7 +62,7 @@ class _FontOption extends StatelessWidget {
       height: 25,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12.5),
-        border: Border.all(color: Colors.white, width: 2),
+        border: Border.all(color: Colors.white, width: 1.5),
       ),
       child: Center(
         child: Text(
