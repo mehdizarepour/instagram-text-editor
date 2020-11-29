@@ -1,3 +1,7 @@
+## [0.3.1] - [2020-11-29].
+
+* Change `ColorOption` widget's border width
+
 ## [0.3.0] - [2020-11-27].
 
 * Add `decoration` property to customize editor design
