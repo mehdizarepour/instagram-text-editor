@@ -22,7 +22,7 @@ An instagram like text editor widget for flutter
 
 ## Installation
 
-Add `text_editor: ^0.2.0` to your `pubspec.yaml` dependencies. And import it:
+Add `text_editor: ^0.3.0` to your `pubspec.yaml` dependencies. And import it:
 
 ```dart
 import 'package:texte_editor/text_editor.dart';
