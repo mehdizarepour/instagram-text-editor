@@ -6,7 +6,14 @@ class TextStyleModel extends ChangeNotifier {
   TextStyle textStyle;
   TextAlign textAlign;
 
-  TextStyleModel(this.text, this.textStyle, this.textAlign);
+  TextStyleModel(
+    this.text, {
+    this.textAlign,
+    this.textStyle,
+  }) {
+    textStyle = textStyle != null ? textStyle : TextStyle(fontSize: 10);
+    textAlign = textAlign != null ? textAlign : TextAlign.center;
+  }
 
   void editTextAlinment(TextAlign value) {
     this.textAlign = value;

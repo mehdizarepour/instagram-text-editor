@@ -1,3 +1,7 @@
+## [0.3.2] - [2021-01-14].
+
+* Fix defualt `TextStyle` issue
+
 ## [0.3.1] - [2020-11-29].
 
 * Change `ColorOption` widget's border width

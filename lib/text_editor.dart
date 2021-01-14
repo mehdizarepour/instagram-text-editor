@@ -82,8 +82,8 @@ class _TextEditorState extends State<TextEditor> {
   void initState() {
     _textStyleModel = TextStyleModel(
       widget.text,
-      widget.textStyle == null ? TextStyle() : widget.textStyle,
-      widget.textAlingment == null ? TextAlign.center : widget.textAlingment,
+      textStyle: widget.textStyle,
+      textAlign: widget.textAlingment,
     );
     _fontOptionModel = FontOptionModel(
       _textStyleModel,
