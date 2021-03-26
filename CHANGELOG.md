@@ -1,3 +1,7 @@
+## 0.4.0
+
+* Stable migrate to `null safety`.
+
 ## 0.4.0-nullsafety.0
 
 * Migrate to `null safety`.
