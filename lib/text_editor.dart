@@ -16,38 +16,38 @@ import 'package:text_editor/src/widget/text_alignment.dart';
 /// You can pass your text style to the widget
 /// and then get the edited text style
 class TextEditor extends StatefulWidget {
+  /// Editor's font families
+  final List<String> fonts;
+
   /// After edit process completed, [onEditCompleted] callback will be called.
   final void Function(TextStyle, TextAlign, String) onEditCompleted;
 
   /// [onTextAlignChanged] will be called after [textAlingment] prop has changed
-  final ValueChanged<TextAlign> onTextAlignChanged;
+  final ValueChanged<TextAlign>? onTextAlignChanged;
 
   /// [onTextStyleChanged] will be called after [textStyle] prop has changed
-  final ValueChanged<TextStyle> onTextStyleChanged;
+  final ValueChanged<TextStyle>? onTextStyleChanged;
 
   /// [onTextChanged] will be called after [text] prop has changed
-  final ValueChanged<String> onTextChanged;
+  final ValueChanged<String>? onTextChanged;
 
   /// The text alignment
-  final TextAlign textAlingment;
+  final TextAlign? textAlingment;
 
   /// The text style
-  final TextStyle textStyle;
+  final TextStyle? textStyle;
 
   /// Widget's background color
-  final Color backgroundColor;
-
-  /// Editor's font families
-  final List<String> fonts;
+  final Color? backgroundColor;
 
   /// Editor's palette colors
-  final List<Color> paletteColors;
+  final List<Color>? paletteColors;
 
   /// Editor's default text
   final String text;
 
   /// Decoration to customize the editor
-  final EditorDecoration decoration;
+  final EditorDecoration? decoration;
 
   /// Create a [TextEditor] widget
   ///
@@ -56,8 +56,8 @@ class TextEditor extends StatefulWidget {
   /// After edit process completed, [onEditCompleted] callback will be called
   /// with new [textStyle], [textAlingment] and [text] value
   TextEditor({
-    @required this.fonts,
-    @required this.onEditCompleted,
+    required this.fonts,
+    required this.onEditCompleted,
     this.paletteColors,
     this.backgroundColor,
     this.text = '',
@@ -74,9 +74,9 @@ class TextEditor extends StatefulWidget {
 }
 
 class _TextEditorState extends State<TextEditor> {
-  TextStyleModel _textStyleModel;
-  FontOptionModel _fontOptionModel;
-  Widget _doneButton;
+  late TextStyleModel _textStyleModel;
+  late FontOptionModel _fontOptionModel;
+  late Widget _doneButton;
 
   @override
   void initState() {
@@ -92,17 +92,16 @@ class _TextEditorState extends State<TextEditor> {
     );
 
     // Initialize decorator
-    _doneButton = widget.decoration?.doneButton == null
-        ? Text('Done', style: TextStyle(color: Colors.white))
-        : widget.decoration.doneButton;
+    _doneButton = widget.decoration?.doneButton ??
+        Text('Done', style: TextStyle(color: Colors.white));
 
     super.initState();
   }
 
   void _editCompleteHandler() {
     widget.onEditCompleted(
-      _textStyleModel.textStyle,
-      _textStyleModel.textAlign,
+      _textStyleModel.textStyle!,
+      _textStyleModel.textAlign!,
       _textStyleModel.text,
     );
   }
@@ -170,7 +169,7 @@ class _TextEditorState extends State<TextEditor> {
                               maxLines: null,
                               keyboardType: TextInputType.multiline,
                               style: textStyleModel.textStyle,
-                              textAlign: textStyleModel.textAlign,
+                              textAlign: textStyleModel.textAlign!,
                               autofocus: true,
                               cursorColor: Colors.white,
                               decoration: null,
@@ -189,7 +188,7 @@ class _TextEditorState extends State<TextEditor> {
                 builder: (context, model, child) =>
                     model.status == FontOptionStatus.fontFamily
                         ? FontFamily(model.fonts)
-                        : ColorPalette(model.colors),
+                        : ColorPalette(model.colors!),
               ),
             ),
           ],
@@ -204,13 +203,13 @@ class _TextEditorState extends State<TextEditor> {
 /// Pass your custom widget to `left`, `right` and `center` to customize their design
 class AlignmentDecoration {
   /// Left alignment widget
-  final Widget left;
+  final Widget? left;
 
   /// Center alignment widget
-  final Widget center;
+  final Widget? center;
 
   /// Right alignment widget
-  final Widget right;
+  final Widget? right;
 
   AlignmentDecoration({this.left, this.center, this.right});
 }
@@ -220,14 +219,14 @@ class AlignmentDecoration {
 /// By using this class, you can customize the text editor's design
 class EditorDecoration {
   /// Done button widget
-  final Widget doneButton;
-  final AlignmentDecoration alignment;
+  final Widget? doneButton;
+  final AlignmentDecoration? alignment;
 
   /// Font family switch widget
-  final Widget fontFamily;
+  final Widget? fontFamily;
 
   /// Color palette switch widget
-  final Widget colorPalette;
+  final Widget? colorPalette;
 
   EditorDecoration({
     this.doneButton,

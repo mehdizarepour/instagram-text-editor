@@ -9,7 +9,7 @@ class FontSize extends StatelessWidget {
       builder: (context, model, child) => RotatedBox(
         quarterTurns: 3,
         child: Slider(
-          value: model.textStyle.fontSize,
+          value: model.textStyle?.fontSize ?? 1,
           min: 0,
           max: 100,
           divisions: 100,

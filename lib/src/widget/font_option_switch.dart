@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:text_editor/src/font_option_model.dart';
 
 class FontOptionSwitch extends StatefulWidget {
-  final Widget fontFamilySwitch;
-  final Widget colorPaletteSwitch;
+  final Widget? fontFamilySwitch;
+  final Widget? colorPaletteSwitch;
 
   FontOptionSwitch({this.fontFamilySwitch, this.colorPaletteSwitch});
 

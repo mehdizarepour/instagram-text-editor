@@ -25,7 +25,7 @@ class _ColorPaletteState extends State<ColorPalette> {
                 height: 40,
                 margin: EdgeInsets.only(right: 7),
                 decoration: BoxDecoration(
-                  color: textStyleModel.textStyle.color,
+                  color: textStyleModel.textStyle?.color,
                   border: Border.all(color: Colors.white, width: 1.5),
                   borderRadius: BorderRadius.circular(100),
                 ),

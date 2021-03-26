@@ -1,12 +1,17 @@
-## [0.3.2] - [2021-01-14].
+## 0.4.0-nullsafety.0
+
+* Migrate to `null safety`.
+* Upgrade provider package to `5.0.0`
+
+## 0.3.2
 
 * Fix defualt `TextStyle` issue
 
-## [0.3.1] - [2020-11-29].
+## 0.3.1
 
 * Change `ColorOption` widget's border width
 
-## [0.3.0] - [2020-11-27].
+## 0.3.0
 
 * Add `decoration` property to customize editor design
 
@@ -59,35 +64,35 @@ TextEditor(
 ),
 ```
 
-## [0.2.1] - [2020-11-14].
+## 0.2.1
 
 * Remove unused imports
 
-## [0.2.0] - [2020-11-14].
+## 0.2.0
 
 * New design to select font family
 * Improve performance
 
-## [0.1.3] - [2020-10-02].
+## 0.1.3
 
 * Set default text alignment
 
-## [0.1.2] - [2020-08-24].
+## 0.1.2
 
 * Set default font size
 
-## [0.1.1] - [2020-08-21].
+## 0.1.1
 
 * Fix `TextAlignment` initialization
 
-## [0.1.0+2] - [2020-08-20].
+## 0.1.0+2
 
 * Add documentations
 
-## [0.1.0+1] - [2020-08-19].
+## 0.1.0+1
 
 * Add documentations
 
-## [0.1.0] - [2020-08-19].
+## 0.1.0
 
 * First virsion of `TextEditor`.
