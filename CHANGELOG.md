@@ -1,3 +1,7 @@
+## 0.4.0+1
+
+* Edit docs.
+
 ## 0.4.0
 
 * Stable migrate to `null safety`.

@@ -1,6 +1,6 @@
 name: text_editor
 description: An Instagram like text editor Flutter widget that helps you to change your text style.
-version: 0.4.0
+version: 0.4.0+1
 author: Mehdi Zarepour<mehdi.zarepoor@gmail.com>
 homepage: https://github.com/mehdizarepour/text_editor.git
 
