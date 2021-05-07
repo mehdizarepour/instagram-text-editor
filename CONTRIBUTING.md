@@ -1,0 +1,58 @@
+# Contributing
+
+This file is intended to be a guide for those interested in contributing to `TextEditor`.
+
+## Getting Started
+
+Make sure you have Flutter installed and on your path.
+
+Follow these steps to fork `TextEditor` and set up the development environment:
+
+1. Fork the project's repository: `https://github.com/mehdizarepour/instagram-text-editor`
+
+2. Clone the forked repository
+
+3. Go into the cloned directory
+
+4. Install all packages: `flutter packages get`
+
+## Before Modifying the Code
+
+If the work you intend to do is non-trivial, it is necessary to open
+an issue before starting writing your code. This helps us and the
+community to discuss the issue and choose what is deemed to be the
+best solution.
+
+## Switch to `dev` branch
+
+You should make your changes upon the `dev` branch (All development changes happen in the `dev` branch, then I publish a new version and merge them into the `master`)
+
+## Checking Your Code's Quality
+
+After you have made your changes, you have to make sure your code works
+correctly and meets our guidelines. Our guidelines are:
+
+You can simply run `make checkstyle`, and if you faced any formatting problem, run `make format .`.
+
+##### Run `make checkstyle` to ensure that your code is formatted correctly
+- It runs `flutter analyze` to verify that there is no any warning or error.
+
+#### Run `make format` to reformat the code
+- It runs `flutter format .` to format your code.
+
+## Creating a Pull Request
+
+Congratulations! Your code meets all of our guidelines :100:. Now you have to
+submit a pull request (or PR for short) to us. These are the steps you should
+follow when creating a PR:
+
+- Make sure you select `dev` branch as your target branch.
+  
+- Make a descriptive title that summarizes what changes were in the PR.
+
+- Link to issues that this PR will fix (if any).
+
+- Change your code according to feedback (if any).
+
+After you follow the above steps, your PR will hopefully be merged. Thanks for
+contributing!
