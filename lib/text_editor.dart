@@ -49,6 +49,9 @@ class TextEditor extends StatefulWidget {
   /// Decoration to customize the editor
   final EditorDecoration? decoration;
 
+  final double? minFontSize;
+  final double? maxFontSize;
+
   /// Create a [TextEditor] widget
   ///
   /// [fonts] list of font families that you want to use in editor.
@@ -63,6 +66,8 @@ class TextEditor extends StatefulWidget {
     this.text = '',
     this.textStyle,
     this.textAlingment,
+    this.minFontSize = 1,
+    this.maxFontSize = 100,
     this.onTextAlignChanged,
     this.onTextStyleChanged,
     this.onTextChanged,
@@ -156,7 +161,10 @@ class _TextEditorState extends State<TextEditor> {
             Expanded(
               child: Row(
                 children: [
-                  FontSize(),
+                  FontSize(
+                    minFontSize: widget.minFontSize!,
+                    maxFontSize: widget.maxFontSize!,
+                  ),
                   Expanded(
                     child: Container(
                       child: Center(

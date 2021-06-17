@@ -1,3 +1,8 @@
+## 0.4.1
+
+* Add `minFontSize` and `maxFontSize` props
+* Fix issue #7
+
 ## 0.4.0+1
 
 * Edit docs.
