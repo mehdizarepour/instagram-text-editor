@@ -9,6 +9,7 @@ import 'package:text_editor/src/widget/font_family.dart';
 import 'package:text_editor/src/widget/font_size.dart';
 import 'package:text_editor/src/widget/font_option_switch.dart';
 import 'package:text_editor/src/widget/text_alignment.dart';
+import 'package:text_editor/src/widget/text_background_color.dart';
 
 /// Instagram like text editor
 /// A flutter widget that edit text style and text alignment
@@ -141,9 +142,8 @@ class _TextEditorState extends State<TextEditor> {
                         fontFamilySwitch: widget.decoration?.fontFamily,
                         colorPaletteSwitch: widget.decoration?.colorPalette,
                       ),
-                      // TODO: Add text background color
-                      // SizedBox(width: 20),
-                      // TextBackgroundColor(),
+                      SizedBox(width: 20),
+                      TextBackgroundColor(),
                     ],
                   ),
                 ),

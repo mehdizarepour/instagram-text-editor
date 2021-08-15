@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'package:text_editor/src/text_style_model.dart';
 
 enum TextBackgroundColorStatus { enable, exchange, none }
 
@@ -15,6 +18,8 @@ class _TextBackgroundColorState extends State<TextBackgroundColor> {
     return GestureDetector(
       onTap: () {
         setState(() {
+          TextStyleModel textStyleModel =
+              Provider.of<TextStyleModel>(context, listen: false);
           switch (_status) {
             case TextBackgroundColorStatus.none:
               _status = TextBackgroundColorStatus.enable;
@@ -25,6 +30,7 @@ class _TextBackgroundColorState extends State<TextBackgroundColor> {
             default:
               _status = TextBackgroundColorStatus.none;
           }
+          textStyleModel.editTextBackgroundColor(_status);
         });
       },
       child: Container(
