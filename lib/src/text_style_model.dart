@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'widget/text_background_color.dart';
+import 'package:text_editor/src/text_background_status.dart';
 
 class TextStyleModel extends ChangeNotifier {
   String text;
@@ -25,12 +25,11 @@ class TextStyleModel extends ChangeNotifier {
 
   void editTextColor(Color value) {
     this.textStyle = this.textStyle!.copyWith(color: value);
-
     notifyListeners();
   }
 
-  void editTextBackgroundColor(TextBackgroundColorStatus _status) {
-    switch (_status) {
+  void editTextBackgroundColor() {
+    switch (TextBackgroundStatus.status) {
       case TextBackgroundColorStatus.none:
         this.textStyle = this.textStyle!.copyWith(
             backgroundColor: Colors.transparent,
@@ -40,7 +39,9 @@ class TextStyleModel extends ChangeNotifier {
         this.textStyle = this.textStyle!.copyWith(
             backgroundColor: this.textStyle?.color == Colors.white
                 ? Colors.black
-                : Colors.white,
+                : (this.textStyle?.color == Colors.black
+                    ? Colors.white
+                    : lightenColor(this.textStyle?.color)),
             color: this.textStyle?.color);
         break;
       case TextBackgroundColorStatus.exchange:
@@ -48,7 +49,9 @@ class TextStyleModel extends ChangeNotifier {
             backgroundColor: this.textStyle?.color,
             color: this.textStyle?.color == Colors.black
                 ? Colors.white
-                : Colors.black);
+                : (this.textStyle?.color == Colors.white
+                    ? Colors.black
+                    : lightenColor(this.textStyle?.color)));
         break;
     }
     notifyListeners();
@@ -64,5 +67,15 @@ class TextStyleModel extends ChangeNotifier {
     this.textStyle = this.textStyle!.copyWith(fontFamily: value);
 
     notifyListeners();
+  }
+
+  Color lightenColor(Color? color, [double amount = .3]) {
+    assert(amount >= 0 && amount <= 1);
+
+    final hsl = HSLColor.fromColor(color!);
+    final hslLight =
+        hsl.withLightness((hsl.lightness + amount).clamp(0.0, 1.0));
+
+    return hslLight.toColor();
   }
 }
