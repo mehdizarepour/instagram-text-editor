@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:text_editor/src/text_style_model.dart';
-import 'package:text_editor/src/text_background_status.dart';
 
 class ColorPalette extends StatefulWidget {
   final List<Color> colors;

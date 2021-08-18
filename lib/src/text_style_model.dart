@@ -33,7 +33,9 @@ class TextStyleModel extends ChangeNotifier {
       case TextBackgroundColorStatus.none:
         this.textStyle = this.textStyle!.copyWith(
             backgroundColor: Colors.transparent,
-            color: this.textStyle?.backgroundColor);
+            color: this.textStyle?.backgroundColor != Colors.transparent
+                ? this.textStyle?.backgroundColor
+                : this.textStyle?.color);
         break;
       case TextBackgroundColorStatus.enable:
         this.textStyle = this.textStyle!.copyWith(
