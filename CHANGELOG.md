@@ -1,3 +1,8 @@
+## 0.5.0
+
+* Add text background color feature
+* Fix issue #6
+
 ## 0.4.1
 
 * Add `minFontSize` and `maxFontSize` props

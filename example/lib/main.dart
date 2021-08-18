@@ -89,6 +89,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   //   Colors.cyanAccent,
                   // ],
                   // decoration: EditorDecoration(
+                  //   textBackground: TextBackgroundDecoration(
+                  //     disable: Text('Disable'),
+                  //     enable: Text('Enable'),
+                  //   ),
                   //   doneButton: Icon(Icons.close, color: Colors.white),
                   //   fontFamily: Icon(Icons.title, color: Colors.white),
                   //   colorPalette: Icon(Icons.palette, color: Colors.white),
