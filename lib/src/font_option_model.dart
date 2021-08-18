@@ -60,7 +60,7 @@ class FontOptionModel extends ChangeNotifier {
     // Set default picked color
     // pickedColor = textStyleModel.textStyle?.color ?? colors![0];
     // Set new text color
-    textStyleModel.editTextColor(textStyleModel.textStyle?.color ?? colors![0]);
+    // textStyleModel.editTextColor(textStyleModel.textStyle?.color ?? colors![0]);
   }
 
   void selectFontFamily(String value) {

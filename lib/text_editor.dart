@@ -10,6 +10,8 @@ import 'package:text_editor/src/widget/font_size.dart';
 import 'package:text_editor/src/widget/font_option_switch.dart';
 import 'package:text_editor/src/widget/text_alignment.dart';
 
+import 'src/widget/text_background_color.dart';
+
 /// Instagram like text editor
 /// A flutter widget that edit text style and text alignment
 ///
@@ -141,9 +143,12 @@ class _TextEditorState extends State<TextEditor> {
                         fontFamilySwitch: widget.decoration?.fontFamily,
                         colorPaletteSwitch: widget.decoration?.colorPalette,
                       ),
-                      // TODO: Add text background color
-                      // SizedBox(width: 20),
-                      // TextBackgroundColor(),
+                      SizedBox(width: 20),
+                      TextBackgroundColor(
+                        enableWidget: widget.decoration?.textBackground?.enable,
+                        disableWidget:
+                            widget.decoration?.textBackground?.disable,
+                      ),
                     ],
                   ),
                 ),
@@ -222,6 +227,19 @@ class AlignmentDecoration {
   AlignmentDecoration({this.left, this.center, this.right});
 }
 
+/// Decoration to customize text background widgets' design.
+///
+/// Pass your custom widget to `enable`, and `disable` to customize their design
+class TextBackgroundDecoration {
+  /// Enabled text background widget
+  final Widget? enable;
+
+  /// Disabled text background widget
+  final Widget? disable;
+
+  TextBackgroundDecoration({this.enable, this.disable});
+}
+
 /// Decoration to customize the editor
 ///
 /// By using this class, you can customize the text editor's design
@@ -229,6 +247,9 @@ class EditorDecoration {
   /// Done button widget
   final Widget? doneButton;
   final AlignmentDecoration? alignment;
+
+  /// Text background widget
+  final TextBackgroundDecoration? textBackground;
 
   /// Font family switch widget
   final Widget? fontFamily;
@@ -241,5 +262,6 @@ class EditorDecoration {
     this.alignment,
     this.fontFamily,
     this.colorPalette,
+    this.textBackground,
   });
 }
