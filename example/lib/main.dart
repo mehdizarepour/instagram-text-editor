@@ -106,6 +106,20 @@ class _MyHomePageState extends State<MyHomePage> {
                   //       style: TextStyle(color: Colors.white),
                   //     ),
                   //   ),
+                  //   textbackgroundcolor: TextBackgroundColorDecoration(
+                  //     enable: Text(
+                  //       'enable',
+                  //       style: TextStyle(color: Colors.white),
+                  //     ),
+                  //     exchange: Text(
+                  //       'exchange',
+                  //       style: TextStyle(color: Colors.white),
+                  //     ),
+                  //     disable: Text(
+                  //       'disable',
+                  //       style: TextStyle(color: Colors.white),
+                  //     ),
+                  //   ),
                   // ),
                   onEditCompleted: (style, align, text) {
                     setState(() {

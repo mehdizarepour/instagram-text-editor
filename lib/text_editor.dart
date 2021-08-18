@@ -143,7 +143,13 @@ class _TextEditorState extends State<TextEditor> {
                         colorPaletteSwitch: widget.decoration?.colorPalette,
                       ),
                       SizedBox(width: 20),
-                      TextBackgroundColor(),
+                      TextBackgroundColor(
+                        enable: widget.decoration?.textbackgroundcolor?.enable,
+                        exchange:
+                            widget.decoration?.textbackgroundcolor?.exchange,
+                        disable:
+                            widget.decoration?.textbackgroundcolor?.disable,
+                      ),
                     ],
                   ),
                 ),
@@ -222,6 +228,22 @@ class AlignmentDecoration {
   AlignmentDecoration({this.left, this.center, this.right});
 }
 
+/// Decoration to customize text background color widgets' design.
+///
+/// Pass your custom widget to `enable`, `exchange` and `disable` to customize their design
+class TextBackgroundColorDecoration {
+  // Text Background color widget in enable status
+  final Widget? enable;
+
+  // Text Background color widget in exchange status
+  final Widget? exchange;
+
+  // Text Background color widget in disable status
+  final Widget? disable;
+
+  TextBackgroundColorDecoration({this.enable, this.exchange, this.disable});
+}
+
 /// Decoration to customize the editor
 ///
 /// By using this class, you can customize the text editor's design
@@ -236,10 +258,13 @@ class EditorDecoration {
   /// Color palette switch widget
   final Widget? colorPalette;
 
-  EditorDecoration({
-    this.doneButton,
-    this.alignment,
-    this.fontFamily,
-    this.colorPalette,
-  });
+  /// Text background color widget
+  final TextBackgroundColorDecoration? textbackgroundcolor;
+
+  EditorDecoration(
+      {this.doneButton,
+      this.alignment,
+      this.fontFamily,
+      this.colorPalette,
+      this.textbackgroundcolor});
 }
