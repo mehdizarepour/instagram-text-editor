@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../text_style_model.dart';
+import 'package:text_editor/src/text_style_model.dart';
+import 'package:text_editor/text_editor_data.dart';
 
 class TextBackgroundColor extends StatelessWidget {
   final Widget? enableWidget;
@@ -11,13 +10,12 @@ class TextBackgroundColor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<TextStyleModel>(
-      builder: (context, model, child) => GestureDetector(
-        onTap: () => model.changeTextBackground(),
-        child: model.textBackgroundStatus != TextBackgroundStatus.disable
-            ? enableWidget ?? _SwitchButton(enabled: true)
-            : disableWidget ?? _SwitchButton(enabled: false),
-      ),
+    final model = TextEditorData.of(context).textStyleModel;
+    return GestureDetector(
+      onTap: () => model.changeTextBackground(),
+      child: model.textBackgroundStatus != TextBackgroundStatus.disable
+          ? enableWidget ?? _SwitchButton(enabled: true)
+          : disableWidget ?? _SwitchButton(enabled: false),
     );
   }
 }

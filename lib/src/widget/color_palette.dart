@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:text_editor/src/text_style_model.dart';
+import 'package:text_editor/text_editor_data.dart';
 
 class ColorPalette extends StatefulWidget {
   final List<Color> colors;
@@ -19,21 +18,19 @@ class _ColorPaletteState extends State<ColorPalette> {
         scrollDirection: Axis.horizontal,
         child: Row(
           children: [
-            Consumer<TextStyleModel>(
-              builder: (context, textStyleModel, child) => Container(
-                width: 40,
-                height: 40,
-                margin: EdgeInsets.only(right: 7),
-                decoration: BoxDecoration(
-                  color: textStyleModel.textStyle?.color,
-                  border: Border.all(color: Colors.white, width: 1.5),
-                  borderRadius: BorderRadius.circular(100),
-                ),
-                child: Center(
-                  child: Icon(
-                    Icons.colorize,
-                    color: Colors.white,
-                  ),
+            Container(
+              width: 40,
+              height: 40,
+              margin: EdgeInsets.only(right: 7),
+              decoration: BoxDecoration(
+                color: TextEditorData.of(context).textStyleModel.textStyle?.color,
+                border: Border.all(color: Colors.white, width: 1.5),
+                borderRadius: BorderRadius.circular(100),
+              ),
+              child: Center(
+                child: Icon(
+                  Icons.colorize,
+                  color: Colors.white,
                 ),
               ),
             ),
@@ -52,8 +49,7 @@ class _ColorPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextStyleModel textStyleModel =
-        Provider.of<TextStyleModel>(context, listen: false);
+    final textStyleModel = TextEditorData.read(context).textStyleModel;
 
     return GestureDetector(
       onTap: () => textStyleModel.editTextColor(color),

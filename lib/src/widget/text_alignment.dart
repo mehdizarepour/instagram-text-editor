@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:text_editor/src/text_style_model.dart';
+import 'package:text_editor/text_editor_data.dart';
 
 class TextAlignment extends StatelessWidget {
   final Widget? left;
@@ -35,11 +35,10 @@ class TextAlignment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<TextStyleModel>(
-      builder: (context, model, child) => GestureDetector(
-        onTapUp: (_) => _onChangeAlignment(model),
-        child: _mapTextAlignToWidget(model.textAlign!),
-      ),
+    final model = TextEditorData.of(context).textStyleModel;
+    return GestureDetector(
+      onTapUp: (_) => _onChangeAlignment(model),
+      child: _mapTextAlignToWidget(model.textAlign!),
     );
   }
 }
