@@ -14,13 +14,15 @@ class TextEditorData extends InheritedWidget {
   final FontOptionModel fontOptionModel;
 
   static TextEditorData of(BuildContext context) {
-    final TextEditorData? result = context.dependOnInheritedWidgetOfExactType<TextEditorData>();
+    final TextEditorData? result =
+        context.dependOnInheritedWidgetOfExactType<TextEditorData>();
     assert(result != null, 'No TextEditorData found in context');
     return result!;
   }
 
   static TextEditorData read(BuildContext context) {
-    final TextEditorData? result = context.findAncestorWidgetOfExactType<TextEditorData>();
+    final TextEditorData? result =
+        context.findAncestorWidgetOfExactType<TextEditorData>();
     assert(result != null, 'No TextEditorData found in context');
     return result!;
   }

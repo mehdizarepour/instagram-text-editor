@@ -109,7 +109,8 @@ class _TextEditorState extends State<TextEditor> {
     });
 
     // Initialize decorator
-    _doneButton = widget.decoration?.doneButton ?? Text('Done', style: TextStyle(color: Colors.white));
+    _doneButton = widget.decoration?.doneButton ??
+        Text('Done', style: TextStyle(color: Colors.white));
 
     super.initState();
   }
@@ -153,7 +154,8 @@ class _TextEditorState extends State<TextEditor> {
                       SizedBox(width: 20),
                       TextBackgroundColor(
                         enableWidget: widget.decoration?.textBackground?.enable,
-                        disableWidget: widget.decoration?.textBackground?.disable,
+                        disableWidget:
+                            widget.decoration?.textBackground?.disable,
                       ),
                     ],
                   ),
@@ -180,7 +182,8 @@ class _TextEditorState extends State<TextEditor> {
                     child: Container(
                       child: Center(
                         child: TextField(
-                          controller: TextEditingController()..text = _textStyleModel.text,
+                          controller: TextEditingController()
+                            ..text = _textStyleModel.text,
                           onChanged: (value) => _textStyleModel.text = value,
                           maxLines: null,
                           keyboardType: TextInputType.multiline,

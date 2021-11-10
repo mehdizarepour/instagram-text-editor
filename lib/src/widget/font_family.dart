@@ -18,7 +18,10 @@ class _FontFamilyState extends State<FontFamily> {
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
-          children: widget.fonts.map((fontModel) => _FontFamilyPicker(fontModel.font, fontModel.isSelected)).toList(),
+          children: widget.fonts
+              .map((fontModel) =>
+                  _FontFamilyPicker(fontModel.font, fontModel.isSelected))
+              .toList(),
         ),
       ),
     );

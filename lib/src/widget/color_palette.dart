@@ -13,6 +13,7 @@ class ColorPalette extends StatefulWidget {
 class _ColorPaletteState extends State<ColorPalette> {
   @override
   Widget build(BuildContext context) {
+    final textStyleModel = TextEditorData.of(context).textStyleModel;
     return Container(
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
@@ -23,7 +24,7 @@ class _ColorPaletteState extends State<ColorPalette> {
               height: 40,
               margin: EdgeInsets.only(right: 7),
               decoration: BoxDecoration(
-                color: TextEditorData.of(context).textStyleModel.textStyle?.color,
+                color: textStyleModel.textStyle?.color,
                 border: Border.all(color: Colors.white, width: 1.5),
                 borderRadius: BorderRadius.circular(100),
               ),
