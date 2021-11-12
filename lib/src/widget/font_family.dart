@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:text_editor/src/font_option_model.dart';
+import 'package:text_editor/text_editor_data.dart';
 
 class FontFamily extends StatefulWidget {
   final List<FontFamilyModel> fonts;
@@ -36,8 +36,7 @@ class _FontFamilyPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FontOptionModel fontOptionModel =
-        Provider.of<FontOptionModel>(context, listen: false);
+    final fontOptionModel = TextEditorData.read(context).fontOptionModel;
 
     return GestureDetector(
       onTap: () => fontOptionModel.selectFontFamily(font),
