@@ -1,3 +1,7 @@
+## 0.6.0
+
+* Upgrade provider package to `6.0.1`
+
 ## 0.5.0
 
 * Add text background color feature
