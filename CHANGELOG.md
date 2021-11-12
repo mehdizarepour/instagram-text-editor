@@ -1,3 +1,7 @@
+## 0.7.0
+
+* Remove provider package
+
 ## 0.6.0
 
 * Upgrade provider package to `6.0.1`

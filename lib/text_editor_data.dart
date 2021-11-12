@@ -17,6 +17,7 @@ class TextEditorData extends InheritedWidget {
     final TextEditorData? result =
         context.dependOnInheritedWidgetOfExactType<TextEditorData>();
     assert(result != null, 'No TextEditorData found in context');
+
     return result!;
   }
 
@@ -24,6 +25,7 @@ class TextEditorData extends InheritedWidget {
     final TextEditorData? result =
         context.findAncestorWidgetOfExactType<TextEditorData>();
     assert(result != null, 'No TextEditorData found in context');
+
     return result!;
   }
 
