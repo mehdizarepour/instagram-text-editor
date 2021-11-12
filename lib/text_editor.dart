@@ -1,7 +1,6 @@
 library text_editor;
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:text_editor/src/font_option_model.dart';
 import 'package:text_editor/src/text_style_model.dart';
 import 'package:text_editor/src/widget/color_palette.dart';
@@ -9,6 +8,7 @@ import 'package:text_editor/src/widget/font_family.dart';
 import 'package:text_editor/src/widget/font_size.dart';
 import 'package:text_editor/src/widget/font_option_switch.dart';
 import 'package:text_editor/src/widget/text_alignment.dart';
+import 'package:text_editor/text_editor_data.dart';
 
 import 'src/widget/text_background_color.dart';
 
@@ -98,6 +98,16 @@ class _TextEditorState extends State<TextEditor> {
       colors: widget.paletteColors,
     );
 
+    // Rebuild whenever a value changes
+    _textStyleModel.addListener(() {
+      setState(() {});
+    });
+
+    // Rebuild whenever a value changes
+    _fontOptionModel.addListener(() {
+      setState(() {});
+    });
+
     // Initialize decorator
     _doneButton = widget.decoration?.doneButton ??
         Text('Done', style: TextStyle(color: Colors.white));
@@ -115,11 +125,9 @@ class _TextEditorState extends State<TextEditor> {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context) => _textStyleModel),
-        ChangeNotifierProvider(create: (context) => _fontOptionModel),
-      ],
+    return TextEditorData(
+      textStyleModel: _textStyleModel,
+      fontOptionModel: _fontOptionModel,
       child: Container(
         padding: EdgeInsets.only(right: 10, left: 10),
         color: widget.backgroundColor,
@@ -173,21 +181,17 @@ class _TextEditorState extends State<TextEditor> {
                   Expanded(
                     child: Container(
                       child: Center(
-                        child: Consumer<TextStyleModel>(
-                          builder: (context, textStyleModel, child) {
-                            return TextField(
-                              controller: TextEditingController()
-                                ..text = textStyleModel.text,
-                              onChanged: (value) => textStyleModel.text = value,
-                              maxLines: null,
-                              keyboardType: TextInputType.multiline,
-                              style: textStyleModel.textStyle,
-                              textAlign: textStyleModel.textAlign!,
-                              autofocus: true,
-                              cursorColor: Colors.white,
-                              decoration: null,
-                            );
-                          },
+                        child: TextField(
+                          controller: TextEditingController()
+                            ..text = _textStyleModel.text,
+                          onChanged: (value) => _textStyleModel.text = value,
+                          maxLines: null,
+                          keyboardType: TextInputType.multiline,
+                          style: _textStyleModel.textStyle,
+                          textAlign: _textStyleModel.textAlign!,
+                          autofocus: true,
+                          cursorColor: Colors.white,
+                          decoration: null,
                         ),
                       ),
                     ),
@@ -197,12 +201,9 @@ class _TextEditorState extends State<TextEditor> {
             ),
             Container(
               margin: EdgeInsets.only(bottom: 5),
-              child: Consumer<FontOptionModel>(
-                builder: (context, model, child) =>
-                    model.status == FontOptionStatus.fontFamily
-                        ? FontFamily(model.fonts)
-                        : ColorPalette(model.colors!),
-              ),
+              child: _fontOptionModel.status == FontOptionStatus.fontFamily
+                  ? FontFamily(_fontOptionModel.fonts)
+                  : ColorPalette(_fontOptionModel.colors!),
             ),
           ],
         ),
